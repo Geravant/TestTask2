@@ -1,34 +1,19 @@
 import javax.swing.*;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.TreeSelectionModel;
+import java.awt.*;
 import java.io.*;
 import java.nio.file.*;
 import java.nio.file.attribute.*;
 import java.util.EnumSet;
 
-class MyFileVisitor extends SimpleFileVisitor<Path> {
-    private JTree directoryTree;
-    private DefaultMutableTreeNode top;
-
-    MyFileVisitor(String dirname) {
-        this.top = new DefaultMutableTreeNode(dirname);
-
-    }
-
-    public FileVisitResult visitFile(Path path, BasicFileAttributes attribs) throws IOException {
-        System.out.println(path);
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode(path);
-        top.add(node);
-        return FileVisitResult.CONTINUE;
-    }
-
-    public JTree getTree() {
-        this.directoryTree  = new JTree(top);
-        return this.directoryTree;
-    }
-}
+import static javax.swing.tree.TreeSelectionModel.*;
 
 
-class DirTreeList {
+class VisitorOfFiles {
     public static void main(String[] args) {
         String dirname = "C:\\";
 
@@ -42,10 +27,29 @@ class DirTreeList {
         }
 
         //System.out.println(myFileVisitor.getTree());
-        JScrollPane jsp = new JScrollPane(myFileVisitor.getTree());
+        JTree tree = myFileVisitor.getTree();
+
+        JScrollPane jsp = new JScrollPane(tree);
         JFrame jfrm = new JFrame();
         jfrm.setSize(500,500);
         jfrm.add(jsp);
         jfrm.setVisible(true);
+
+        final JLabel jLab = new JLabel();
+        jfrm.add(jLab, BorderLayout.SOUTH);
+
+        tree.addTreeSelectionListener(new TreeSelectionListener() {
+            @Override
+            public void valueChanged(TreeSelectionEvent e) {
+                jLab.setText("Selection is "+ e.getPath());
+                MyFileVisitor myFileVisitor = new MyFileVisitor("C:\\Users");
+                try {
+                    Files.walkFileTree(Paths.get("C:\\Users"), EnumSet.of(FileVisitOption.FOLLOW_LINKS), 1, myFileVisitor);
+                } catch (IOException exc) {
+                    System.out.println("IO Error");
+                }
+
+            }
+        });
     }
 }
