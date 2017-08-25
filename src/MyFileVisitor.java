@@ -12,11 +12,11 @@ public class MyFileVisitor extends SimpleFileVisitor<Path> {
     private JTree directoryTree;
     private DefaultMutableTreeNode top;
     private TreePath[] treePathes;
-    private int count = 0;
+    private int count;
 
     MyFileVisitor(String dirname) {
         this.top = new DefaultMutableTreeNode(dirname);
-
+        this.count = 0;
     }
 
     public FileVisitResult visitFile(Path path, BasicFileAttributes attribs) throws IOException {
@@ -24,8 +24,8 @@ public class MyFileVisitor extends SimpleFileVisitor<Path> {
         DefaultMutableTreeNode node = new DefaultMutableTreeNode(path.getFileName());
         top.add(node);
         System.out.println(node.getParent()+"\\"+node.toString());
-        this.treePathes[count] = new TreePath(node);
-        count++;
+        this.treePathes[this.count] = new TreePath(node);
+        this.count++;
         return FileVisitResult.CONTINUE;
     }
 

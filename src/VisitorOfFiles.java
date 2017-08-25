@@ -41,10 +41,10 @@ class VisitorOfFiles {
         final JLabel jLab = new JLabel();
         jfrm.add(jLab, BorderLayout.SOUTH);
 
-        tree.addTreeSelectionListener(new TreeExpansionListener() {
+        tree.addTreeExpansionListener(new TreeExpansionListener() {
             @Override
-            public void valueChanged(TreeExpansionEvent e) {
-                int dirDepth = e.path().getPathCount();
+            public void treeExpanded(TreeExpansionEvent e) {
+                int dirDepth = e.getPath().getPathCount();
                 String dirname = e.getPath().getPathComponent(0).toString();
                 for(int i=1; i< dirDepth; i++) {
                     dirname = dirname + "\\"+ e.getPath().getPathComponent(i);
@@ -61,7 +61,7 @@ class VisitorOfFiles {
                 }
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode)(e.getPath().getLastPathComponent());
 
-                tree.Getmodel();
+                //this.();
 
 
                 for (TreePath treepath: myFileVisitor.getPathes()) {
@@ -69,6 +69,10 @@ class VisitorOfFiles {
                     node.add(newChild);
                 }
 
+            }
+            @Override
+            public void treeCollapsed(TreeExpansionEvent e) {
+                System.out.println("Closed");
             }
         });
     }
