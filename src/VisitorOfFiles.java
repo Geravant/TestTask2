@@ -31,10 +31,12 @@ class VisitorOfFiles {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode(dirname);
         final DefaultTreeModel treeModel = new DefaultTreeModel(root);
         root.setAllowsChildren(true);
+        DefaultMutableTreeNode plug = new DefaultMutableTreeNode("Empty Folder");
+        root.add(plug);
         final JTree tree = new JTree(treeModel);
         tree.setEditable(true);
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        tree.setShowsRootHandles(true);
+        tree.setShowsRootHandles(false);
 
         JScrollPane jsp = new JScrollPane(tree);
         JFrame jfrm = new JFrame();
@@ -45,9 +47,9 @@ class VisitorOfFiles {
         JLabel jLab = new JLabel();
         jfrm.add(jLab, BorderLayout.SOUTH);
 
-        tree.addTreeSelectionListener(new TreeSelectionListener(){
+        tree.addTreeExpansionListener(new TreeExpansionListener(){
             @Override
-            public void valueChanged(TreeSelectionEvent e) {
+            public void treeExpanded(TreeExpansionEvent e) {
                 int dirDepth = e.getPath().getPathCount();
                 String dirname = e.getPath().getPathComponent(0).toString();
                 for(int i=1; i< dirDepth; i++) {
@@ -55,13 +57,13 @@ class VisitorOfFiles {
                     System.out.println(dirname);
                 }
 
-                File dir = new File(dirname);
+                /*File dir = new File(dirname);
                 File[] futureDirs = dir.listFiles();
                 for (File file: futureDirs) {
                     if (file.isDirectory()) {
 
                     }
-                }
+                }*/
                 //dirname.replaceAll(", ", "\\");
                 //jLab.setText("Selection is "+ dirname);
 
@@ -72,10 +74,14 @@ class VisitorOfFiles {
                     //tree.Getmodel;
                     DefaultMutableTreeNode node = (DefaultMutableTreeNode) e.getPath().getLastPathComponent();
                     Vector treePathes = myFileVisitor.getPathes();
+                    if (myFileVisitor.getPathes().size() != 0){
+                        node.remove(0);
+                    }
                    /* myFileVisitor.updateModel((DefaultTreeModel) tree.getModel(), myFileVisitor.getTop());*/
                     for (int fnum = 0; fnum < treePathes.size(); fnum++) {
                         DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(treePathes.elementAt(fnum));
                         node.add(newNode);
+
                         String wannaBeDirName = new String();
                         TreeNode[] wannaBeDir = newNode.getPath();
                         for(TreeNode wannaBeDirPart: wannaBeDir) {
@@ -87,16 +93,22 @@ class VisitorOfFiles {
                         if (wannaBeDirFile.isDirectory()) {
                             newNode.setAllowsChildren(true);
                             //newNode.add(null);
+
+                            DefaultMutableTreeNode plug = new DefaultMutableTreeNode("Empty folder");
+                            newNode.add(plug);
                             treeModel.nodeStructureChanged(newNode);
                             System.out.println('1');
+
                         }
-                        //treeModel.insertNodeInto((DefaultMutableTreeNode) treePathes.elementAt(fnum), node, node.getChildCount()-1);
+
+                        //treeMode
+                        // l.insertNodeInto((DefaultMutableTreeNode) treePathes.elementAt(fnum), node, node.getChildCount()-1);
                         treeModel.nodeStructureChanged(node);
                     }
 
                    //node.add(myFileVisitor.getTop());
 
-                    tree.makeVisible(e.getPath().pathByAddingChild(myFileVisitor.getTop()));
+                    //tree.makeVisible(e.getPath().pathByAddingChild(myFileVisitor.getTop()));
 
                 } catch (IOException exc) {
                     System.out.println("IO Error");
@@ -112,10 +124,10 @@ class VisitorOfFiles {
                 }*/
 
             }
-            /*@Override
+            @Override
             public void treeCollapsed(TreeExpansionEvent e) {
                 System.out.println("Closed");
-            }*/
+            }
         });
     }
 }
