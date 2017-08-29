@@ -1,18 +1,12 @@
 import javax.swing.*;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.*;
 import java.awt.*;
 import java.io.*;
 import java.nio.file.*;
-import java.nio.file.attribute.*;
 import java.util.EnumSet;
 import java.util.Vector;
-
-import static javax.swing.tree.TreeSelectionModel.*;
-
 
 class VisitorOfFiles {
     public static void main(String[] args) {
