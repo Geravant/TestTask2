@@ -10,27 +10,81 @@ import java.util.Vector;
 
 class VisitorOfFiles {
     public static void main(String[] args) {
-        String dirname = "C:\\";
-
-        System.out.println(dirname+"\n");
-
-        MyFileVisitor myFileVisitor = new MyFileVisitor(dirname);
-        try {
-            Files.walkFileTree(Paths.get(dirname), EnumSet.of(FileVisitOption.FOLLOW_LINKS), 1, myFileVisitor);
-        } catch (IOException exc) {
-            System.out.println("IO Error");
+        SystemRoots systemroots = new SystemRoots();
+        Vector<String> dirname = new Vector();
+        for (File f: systemroots.getSystemRoots()) {
+            System.out.println(f.getAbsolutePath());
+            dirname.addElement(f.getAbsolutePath());
         }
+        //String dirname = "C:\\";
+
+        //System.out.println(dirname+"\n");
+
+//        MyFileVisitor myFileVisitor = new MyFileVisitor(dirname);
+//        try {
+//            Files.walkFileTree(Paths.get(dirname), EnumSet.of(FileVisitOption.FOLLOW_LINKS), 1, myFileVisitor);
+//        } catch (IOException exc) {
+//            System.out.println("IO Error");
+//        }
 
         //System.out.println(myFileVisitor.getTree());
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode(dirname);
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode("UltimateRoot");
         final DefaultTreeModel treeModel = new DefaultTreeModel(root);
         root.setAllowsChildren(true);
-        DefaultMutableTreeNode plug = new DefaultMutableTreeNode("Empty Folder");
-        root.add(plug);
+        //DefaultMutableTreeNode plug = new DefaultMutableTreeNode("Empty Folder");
+        for (String dir: dirname){
+//            MyFileVisitor myFileVisitor = new MyFileVisitor(dir+File.separator);
+//            try {
+//                Files.walkFileTree(Paths.get(dir), EnumSet.of(FileVisitOption.FOLLOW_LINKS), 1, myFileVisitor);
+//            } catch (IOException exc) {
+//                System.out.println("IO Error");
+//            }
+            DefaultMutableTreeNode node = new DefaultMutableTreeNode(dir);
+            root.add(node);
+            node.setAllowsChildren(true);
+            DefaultMutableTreeNode plug = new DefaultMutableTreeNode("Empty Folder");
+            node.add(plug);
+            System.out.println(dir+"pluged");
+//            Vector treePathes = myFileVisitor.getPathes();
+//            if (myFileVisitor.getPathes().size() != 0){
+//                node.remove(0);
+//            }
+//                   /* myFileVisitor.updateModel((DefaultTreeModel) tree.getModel(), myFileVisitor.getTop());*/
+//            for (int fnum = 0; fnum < treePathes.size(); fnum++) {
+//                DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(treePathes.elementAt(fnum));
+//                node.add(newNode);
+//
+//                String wannaBeDirName = new String();
+//                TreeNode[] wannaBeDir = newNode.getPath();
+//                for(int i = 1; i< wannaBeDir.length; i++) {
+//                    TreeNode wannaBeDirPart = wannaBeDir[i];
+//                    wannaBeDirName = wannaBeDirName + wannaBeDirPart.toString()+ File.separator;
+//                    System.out.println(wannaBeDirName);
+//                }
+//                File wannaBeDirFile = new File(wannaBeDirName);
+//                System.out.println(wannaBeDirName);
+//                if (wannaBeDirFile.isDirectory()) {
+//                    newNode.setAllowsChildren(true);
+//                    //newNode.add(null);
+//
+//                    newNode.add(plug);
+//                    treeModel.nodeStructureChanged(newNode);
+//                    System.out.println('1');
+//
+//                }
+
+                //treeMode
+                // l.insertNodeInto((DefaultMutableTreeNode) treePathes.elementAt(fnum), node, node.getChildCount()-1);
+                treeModel.nodeStructureChanged(node);
+            }
+
+
+        //root.add(plug);
         final JTree tree = new JTree(treeModel);
         tree.setEditable(true);
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setShowsRootHandles(false);
+        tree.setRootVisible(false);
 
         JScrollPane jsp = new JScrollPane(tree);
         JFrame jfrm = new JFrame();
@@ -45,10 +99,10 @@ class VisitorOfFiles {
             @Override
             public void treeExpanded(TreeExpansionEvent e) {
                 int dirDepth = e.getPath().getPathCount();
-                String dirname = e.getPath().getPathComponent(0).toString();
-                for(int i=1; i< dirDepth; i++) {
+                String dirname = e.getPath().getPathComponent(1).toString();
+                for(int i=2; i< dirDepth; i++) {
                     dirname = dirname + File.separator+ e.getPath().getPathComponent(i);
-                    System.out.println(dirname);
+                    System.out.println(dirname+"1");
                 }
 
                 /*File dir = new File(dirname);
@@ -78,12 +132,13 @@ class VisitorOfFiles {
 
                         String wannaBeDirName = new String();
                         TreeNode[] wannaBeDir = newNode.getPath();
-                        for(TreeNode wannaBeDirPart: wannaBeDir) {
+                        for(int i = 1; i< wannaBeDir.length; i++) {
+                            TreeNode wannaBeDirPart = wannaBeDir[i];
                             wannaBeDirName = wannaBeDirName + wannaBeDirPart.toString()+ File.separator;
-                            //System.out.println(wannaBeDirName);
+                            System.out.println(wannaBeDirName);
                         }
                         File wannaBeDirFile = new File(wannaBeDirName);
-                        System.out.println(wannaBeDirName);
+                        System.out.println(wannaBeDirName+"2");
                         if (wannaBeDirFile.isDirectory()) {
                             newNode.setAllowsChildren(true);
                             //newNode.add(null);
