@@ -4,8 +4,6 @@ import javax.swing.event.TreeExpansionListener;
 import javax.swing.tree.*;
 import java.awt.*;
 import java.io.*;
-import java.nio.file.*;
-import java.util.EnumSet;
 import java.util.Vector;
 
 class VisitorOfFiles {
@@ -16,161 +14,58 @@ class VisitorOfFiles {
             System.out.println(f.getAbsolutePath());
             dirname.addElement(f.getAbsolutePath());
         }
-        //String dirname = "C:\\";
-
-        //System.out.println(dirname+"\n");
-
-//        MyFileVisitor myFileVisitor = new MyFileVisitor(dirname);
-//        try {
-//            Files.walkFileTree(Paths.get(dirname), EnumSet.of(FileVisitOption.FOLLOW_LINKS), 1, myFileVisitor);
-//        } catch (IOException exc) {
-//            System.out.println("IO Error");
-//        }
-
-        //System.out.println(myFileVisitor.getTree());
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("UltimateRoot");
+        FileTreeNode root = new FileTreeNode("UltimateRoot");
         final DefaultTreeModel treeModel = new DefaultTreeModel(root);
         root.setAllowsChildren(true);
-        //DefaultMutableTreeNode plug = new DefaultMutableTreeNode("Empty Folder");
         for (String dir: dirname){
-//            MyFileVisitor myFileVisitor = new MyFileVisitor(dir+File.separator);
-//            try {
-//                Files.walkFileTree(Paths.get(dir), EnumSet.of(FileVisitOption.FOLLOW_LINKS), 1, myFileVisitor);
-//            } catch (IOException exc) {
-//                System.out.println("IO Error");
-//            }
-            DefaultMutableTreeNode node = new DefaultMutableTreeNode(dir);
+//
+            FileTreeNode node = new FileTreeNode(dir);
             root.add(node);
             node.setAllowsChildren(true);
-            DefaultMutableTreeNode plug = new DefaultMutableTreeNode("Empty Folder");
+            FileTreeNode plug = new FileTreeNode("Empty Folder");
             node.add(plug);
             System.out.println(dir+"pluged");
-//            Vector treePathes = myFileVisitor.getPathes();
-//            if (myFileVisitor.getPathes().size() != 0){
-//                node.remove(0);
-//            }
-//                   /* myFileVisitor.updateModel((DefaultTreeModel) tree.getModel(), myFileVisitor.getTop());*/
-//            for (int fnum = 0; fnum < treePathes.size(); fnum++) {
-//                DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(treePathes.elementAt(fnum));
-//                node.add(newNode);
 //
-//                String wannaBeDirName = new String();
-//                TreeNode[] wannaBeDir = newNode.getPath();
-//                for(int i = 1; i< wannaBeDir.length; i++) {
-//                    TreeNode wannaBeDirPart = wannaBeDir[i];
-//                    wannaBeDirName = wannaBeDirName + wannaBeDirPart.toString()+ File.separator;
-//                    System.out.println(wannaBeDirName);
-//                }
-//                File wannaBeDirFile = new File(wannaBeDirName);
-//                System.out.println(wannaBeDirName);
-//                if (wannaBeDirFile.isDirectory()) {
-//                    newNode.setAllowsChildren(true);
-//                    //newNode.add(null);
-//
-//                    newNode.add(plug);
-//                    treeModel.nodeStructureChanged(newNode);
-//                    System.out.println('1');
-//
-//                }
-
-                //treeMode
-                // l.insertNodeInto((DefaultMutableTreeNode) treePathes.elementAt(fnum), node, node.getChildCount()-1);
                 treeModel.nodeStructureChanged(node);
             }
 
-
-        //root.add(plug);
         final JTree tree = new JTree(treeModel);
         tree.setEditable(true);
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setShowsRootHandles(false);
         tree.setRootVisible(false);
+        final MyRenderer loadCellRenderer = new MyRenderer();
+        tree.setCellRenderer(loadCellRenderer);
 
         JScrollPane jsp = new JScrollPane(tree);
         JFrame jfrm = new JFrame();
-        jfrm.setSize(500,500);
+        jfrm.setSize(1000,500);
         jfrm.add(jsp);
         jfrm.setVisible(true);
+        jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel jLab = new JLabel();
         jfrm.add(jLab, BorderLayout.SOUTH);
 
-        tree.addTreeExpansionListener(new TreeExpansionListener(){
+        tree.addTreeExpansionListener(new TreeExpansionListener() {
             @Override
-            public void treeExpanded(TreeExpansionEvent e) {
-                int dirDepth = e.getPath().getPathCount();
-                String dirname = e.getPath().getPathComponent(1).toString();
-                for(int i=2; i< dirDepth; i++) {
-                    dirname = dirname + File.separator+ e.getPath().getPathComponent(i);
-                    System.out.println(dirname+"1");
-                }
+            public synchronized void treeExpanded(TreeExpansionEvent e) {
 
-                /*File dir = new File(dirname);
-                File[] futureDirs = dir.listFiles();
-                for (File file: futureDirs) {
-                    if (file.isDirectory()) {
 
-                    }
-                }*/
-                //dirname.replaceAll(", ", "\\");
-                //jLab.setText("Selection is "+ dirname);
-
-                MyFileVisitor myFileVisitor = new MyFileVisitor(dirname);
+                LazyLoad lazyload = new LazyLoad(e);
+                Thread lazyloadrun = new Thread(lazyload);
+                lazyloadrun.start();
+                lazyload.getNode().setLoading(true);
+                loadCellRenderer.repaint();
+                loadCellRenderer.revalidate();
                 try {
-                    Files.walkFileTree(Paths.get(dirname), EnumSet.of(FileVisitOption.FOLLOW_LINKS), 1, myFileVisitor);
-                    /*myFileVisitor.setPathes();*/
-                    //tree.Getmodel;
-                    DefaultMutableTreeNode node = (DefaultMutableTreeNode) e.getPath().getLastPathComponent();
-                    Vector treePathes = myFileVisitor.getPathes();
-                    if (myFileVisitor.getPathes().size() != 0){
-                        node.remove(0);
-                    }
-                   /* myFileVisitor.updateModel((DefaultTreeModel) tree.getModel(), myFileVisitor.getTop());*/
-                    for (int fnum = 0; fnum < treePathes.size(); fnum++) {
-                        DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(treePathes.elementAt(fnum));
-                        node.add(newNode);
-
-                        String wannaBeDirName = new String();
-                        TreeNode[] wannaBeDir = newNode.getPath();
-                        for(int i = 1; i< wannaBeDir.length; i++) {
-                            TreeNode wannaBeDirPart = wannaBeDir[i];
-                            wannaBeDirName = wannaBeDirName + wannaBeDirPart.toString()+ File.separator;
-                            System.out.println(wannaBeDirName);
-                        }
-                        File wannaBeDirFile = new File(wannaBeDirName);
-                        System.out.println(wannaBeDirName+"2");
-                        if (wannaBeDirFile.isDirectory()) {
-                            newNode.setAllowsChildren(true);
-                            //newNode.add(null);
-
-                            DefaultMutableTreeNode plug = new DefaultMutableTreeNode("Empty folder");
-                            newNode.add(plug);
-                            treeModel.nodeStructureChanged(newNode);
-                            System.out.println('1');
-
-                        }
-
-                        //treeMode
-                        // l.insertNodeInto((DefaultMutableTreeNode) treePathes.elementAt(fnum), node, node.getChildCount()-1);
-                        treeModel.nodeStructureChanged(node);
-                    }
-
-                   //node.add(myFileVisitor.getTop());
-
-                    //tree.makeVisible(e.getPath().pathByAddingChild(myFileVisitor.getTop()));
-
-                } catch (IOException exc) {
-                    System.out.println("IO Error");
+                    lazyloadrun.sleep(2000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
                 }
-                /*DefaultMutableTreeNode node = (DefaultMutableTreeNode)(e.getPath().getLastPathComponent());
-
-                //this.();
-
-
-                for (TreePath treepath: myFileVisitor.getPathes()) {
-                    MutableTreeNode newChild = (MutableTreeNode) treepath;
-                    node.add(newChild);
-                }*/
+                treeModel.nodeStructureChanged(lazyload.getNode());
+                lazyloadrun.interrupt();
+                lazyload.getNode().setLoading(false);
 
             }
             @Override
