@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a105a0a-6f6a-4cf3-8a1b-6fdd4c13c1e9" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Zoom_launcher.exe" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestTask/LazyLoad.class" afterPath="$PROJECT_DIR$/out/production/TestTask/LazyLoad.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestTask/MyRenderer.class" afterPath="$PROJECT_DIR$/out/production/TestTask/MyRenderer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestTask/VisitorOfFiles$1.class" afterPath="$PROJECT_DIR$/out/production/TestTask/VisitorOfFiles$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestTask/VisitorOfFiles.class" afterPath="$PROJECT_DIR$/out/production/TestTask/VisitorOfFiles.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/LazyLoad.java" afterPath="$PROJECT_DIR$/src/LazyLoad.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MyRenderer.java" afterPath="$PROJECT_DIR$/src/MyRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/VisitorOfFiles.java" afterPath="$PROJECT_DIR$/src/VisitorOfFiles.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -433,7 +435,14 @@
       <option name="project" value="LOCAL" />
       <updated>1504708025416</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Everything but loading icons">
+      <created>1504715109924</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1504715109924</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
