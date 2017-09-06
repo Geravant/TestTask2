@@ -7,6 +7,7 @@ public class MyRenderer extends DefaultTreeCellRenderer {
     private Object currentLoading;
 
     public MyRenderer() {
+        super();
     }
 
     public Component getTreeCellRendererComponent(JTree tree,
@@ -16,7 +17,7 @@ public class MyRenderer extends DefaultTreeCellRenderer {
                 expanded, leaf, row, hasFocus);
         //FileTreeNode nodeObj = (FileTreeNode)value;
         // check whatever you need to on the node user object
-        if (value == currentLoading) {
+        if (value.toString() == currentLoading) {
             setIcon(tutorialIcon);
         } else {
            // setIcon(tutorialIcon);
@@ -30,7 +31,7 @@ public class MyRenderer extends DefaultTreeCellRenderer {
         if (imgURL != null) {
             ImageIcon imageIcon = new ImageIcon(imgURL, description);
             Image image = imageIcon.getImage(); // transform it
-            Image newimg = image.getScaledInstance(25, 25,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+            Image newimg = image.getScaledInstance(15, 10,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
             imageIcon = new ImageIcon(newimg);  // transform it back
             return imageIcon;
         } else {
@@ -39,9 +40,6 @@ public class MyRenderer extends DefaultTreeCellRenderer {
         }
     }
 
-    @Override
-    public void repaint() {
-    }
 
     public void setCurrentLoading(Object currentLoading) {
         this.currentLoading = currentLoading;

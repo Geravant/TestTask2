@@ -56,26 +56,20 @@ class VisitorOfFiles {
                 Thread lazyloadrun = new Thread(lazyload);
                 lazyloadrun.start();
                 lazyload.getNode().setLoading(true);
-                loadCellRenderer.setCurrentLoading(lazyload.getNode().getUserObject());
+                loadCellRenderer.setCurrentLoading(lazyload.getNode().getUserObject().toString());
                 treeModel.nodeChanged(lazyload.getNode());
                 System.out.println(lazyload.getNode().getUserObject()+"5");
                 System.out.println(lazyload.getNode().getUserObject() == loadCellRenderer.getCurrentLoading());
-                //treeModel.reload(lazyload.getNode());
-                jsp.revalidate();
-                loadCellRenderer.revalidate();
-                tree.revalidate();
-                jfrm.revalidate();
-                jsp.repaint();
-                tree.repaint();
-                loadCellRenderer.repaint();
-                jfrm.repaint();
 
                 try {
                     lazyloadrun.sleep(500);
+                    //loadCellRenderer.setCurrentLoading(null);
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }
                 treeModel.nodeStructureChanged(lazyload.getNode());
+
+
                 lazyloadrun.interrupt();
                 lazyload.getNode().setLoading(false);
 
