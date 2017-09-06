@@ -13,6 +13,7 @@ public class LazyLoad implements Runnable{
     private String dirname;
     private MyFileVisitor myFileVisitor;
     private FileTreeNode node;
+    private Object currentLoading;
 
 
 
@@ -26,6 +27,7 @@ public class LazyLoad implements Runnable{
 
         myFileVisitor = new MyFileVisitor(dirname);
         node = (FileTreeNode) e.getPath().getLastPathComponent();
+        currentLoading = node.getUserObject();
     }
 
     public void run() {

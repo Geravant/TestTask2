@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a105a0a-6f6a-4cf3-8a1b-6fdd4c13c1e9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestTask/VisitorOfFiles$1.class" afterPath="$PROJECT_DIR$/out/production/TestTask/VisitorOfFiles$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestTask/VisitorOfFiles.class" afterPath="$PROJECT_DIR$/out/production/TestTask/VisitorOfFiles.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/LazyLoad.java" afterPath="$PROJECT_DIR$/src/LazyLoad.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MyRenderer.java" afterPath="$PROJECT_DIR$/src/MyRenderer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/VisitorOfFiles.java" afterPath="$PROJECT_DIR$/src/VisitorOfFiles.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,11 +20,12 @@
       <file leaf-file-name="VisitorOfFiles.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/VisitorOfFiles.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+            <state relative-caret-position="428">
+              <caret line="70" column="31" lean-forward="true" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
               <folding>
-                <element signature="e#2662#2663#0" expanded="true" />
-                <element signature="e#2722#2723#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#3264#3265#0" expanded="true" />
+                <element signature="e#3324#3325#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -32,9 +34,15 @@
       <file leaf-file-name="MyRenderer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MyRenderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="21" lean-forward="false" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
-              <folding />
+            <state relative-caret-position="-161">
+              <caret line="16" column="44" lean-forward="false" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1712#1713#0" expanded="true" />
+                <element signature="e#1764#1765#0" expanded="true" />
+                <element signature="e#1805#1806#0" expanded="true" />
+                <element signature="e#1842#1843#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -42,9 +50,22 @@
       <file leaf-file-name="DefaultTreeCellRenderer.java" pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/javax/swing/tree/DefaultTreeCellRenderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2506">
-              <caret line="423" column="21" lean-forward="false" selection-start-line="423" selection-start-column="21" selection-end-line="423" selection-end-column="21" />
+            <state relative-caret-position="7599">
+              <caret line="617" column="18" lean-forward="true" selection-start-line="617" selection-start-column="18" selection-end-line="617" selection-end-column="18" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Component.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/awt/Component.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="163">
+              <caret line="234" column="7" lean-forward="true" selection-start-line="234" selection-start-column="7" selection-end-line="234" selection-end-column="7" />
+              <folding>
+                <element signature="e#113980#113981#0" expanded="true" />
+                <element signature="e#114027#114028#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -52,9 +73,11 @@
       <file leaf-file-name="LazyLoad.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/LazyLoad.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="44" lean-forward="false" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
-              <folding />
+            <state relative-caret-position="-212">
+              <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -62,8 +85,8 @@
       <file leaf-file-name="FileTreeNode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FileTreeNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+            <state relative-caret-position="68">
+              <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
               <folding>
                 <element signature="e#458#459#0" expanded="true" />
                 <element signature="e#490#491#0" expanded="true" />
@@ -112,6 +135,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>setShowsRootHandles</find>
+      <find>Component</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -142,14 +166,15 @@
         <option value="$PROJECT_DIR$/src/SystemRoots.java" />
         <option value="$PROJECT_DIR$/src/MyFileVisitor.java" />
         <option value="$PROJECT_DIR$/src/LoadCellRenderer.java" />
+        <option value="$PROJECT_DIR$/src/LoadableObject.java" />
+        <option value="$PROJECT_DIR$/src/LazyLoad.java" />
         <option value="$PROJECT_DIR$/src/FileTreeNode.java" />
         <option value="$PROJECT_DIR$/src/VisitorOfFiles.java" />
         <option value="$PROJECT_DIR$/src/MyRenderer.java" />
-        <option value="$PROJECT_DIR$/src/LazyLoad.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="39" />
     <option name="y" value="-8" />
     <option name="width" value="1612" />
@@ -412,7 +437,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -520,8 +545,9 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2662#2663#0" expanded="true" />
-            <element signature="e#2722#2723#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3264#3265#0" expanded="true" />
+            <element signature="e#3324#3325#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -538,7 +564,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="52" column="27" lean-forward="false" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="27" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -575,8 +603,9 @@
         <state relative-caret-position="1462">
           <caret line="86" column="35" lean-forward="true" selection-start-line="86" selection-start-column="35" selection-end-line="86" selection-end-column="35" />
           <folding>
-            <element signature="e#2662#2663#0" expanded="true" />
-            <element signature="e#2722#2723#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3264#3265#0" expanded="true" />
+            <element signature="e#3324#3325#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -604,8 +633,9 @@
         <state relative-caret-position="255">
           <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
           <folding>
-            <element signature="e#2662#2663#0" expanded="true" />
-            <element signature="e#2722#2723#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3264#3265#0" expanded="true" />
+            <element signature="e#3324#3325#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -615,8 +645,9 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2662#2663#0" expanded="true" />
-            <element signature="e#2722#2723#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3264#3265#0" expanded="true" />
+            <element signature="e#3324#3325#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -636,8 +667,9 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2662#2663#0" expanded="true" />
-            <element signature="e#2722#2723#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3264#3265#0" expanded="true" />
+            <element signature="e#3324#3325#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -659,8 +691,9 @@
         <state relative-caret-position="748">
           <caret line="59" column="51" lean-forward="false" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
           <folding>
-            <element signature="e#2662#2663#0" expanded="true" />
-            <element signature="e#2722#2723#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3264#3265#0" expanded="true" />
+            <element signature="e#3324#3325#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -682,8 +715,9 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2662#2663#0" expanded="true" />
-            <element signature="e#2722#2723#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3264#3265#0" expanded="true" />
+            <element signature="e#3324#3325#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -705,8 +739,9 @@
         <state relative-caret-position="408">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding>
-            <element signature="e#2662#2663#0" expanded="true" />
-            <element signature="e#2722#2723#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3264#3265#0" expanded="true" />
+            <element signature="e#3324#3325#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -728,8 +763,9 @@
         <state relative-caret-position="136">
           <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
           <folding>
-            <element signature="e#2662#2663#0" expanded="true" />
-            <element signature="e#2722#2723#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3264#3265#0" expanded="true" />
+            <element signature="e#3324#3325#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -750,8 +786,9 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2662#2663#0" expanded="true" />
-            <element signature="e#2722#2723#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3264#3265#0" expanded="true" />
+            <element signature="e#3324#3325#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -761,8 +798,9 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2662#2663#0" expanded="true" />
-            <element signature="e#2722#2723#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3264#3265#0" expanded="true" />
+            <element signature="e#3324#3325#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -786,50 +824,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/javax/swing/tree/DefaultTreeCellRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2506">
-          <caret line="423" column="21" lean-forward="false" selection-start-line="423" selection-start-column="21" selection-end-line="423" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/VisitorOfFiles.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding>
-            <element signature="e#2662#2663#0" expanded="true" />
-            <element signature="e#2722#2723#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/LazyLoad.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="44" lean-forward="false" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FileTreeNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding>
-            <element signature="e#458#459#0" expanded="true" />
-            <element signature="e#490#491#0" expanded="true" />
-            <element signature="e#537#538#0" expanded="true" />
-            <element signature="e#572#573#0" expanded="true" />
-            <element signature="e#602#603#0" expanded="true" />
-            <element signature="e#630#631#0" expanded="true" />
-            <element signature="e#669#670#0" expanded="true" />
-            <element signature="e#696#697#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SystemRoots.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -848,11 +842,94 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/LoadableObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/javax/swing/tree/DefaultMutableTreeNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3944">
+          <caret line="343" column="18" lean-forward="false" selection-start-line="343" selection-start-column="18" selection-end-line="343" selection-end-column="18" />
+          <folding>
+            <element signature="e#11927#11928#0" expanded="false" />
+            <element signature="e#11960#11961#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LazyLoad.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-212">
+          <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FileTreeNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+          <folding>
+            <element signature="e#458#459#0" expanded="true" />
+            <element signature="e#490#491#0" expanded="true" />
+            <element signature="e#537#538#0" expanded="true" />
+            <element signature="e#572#573#0" expanded="true" />
+            <element signature="e#602#603#0" expanded="true" />
+            <element signature="e#630#631#0" expanded="true" />
+            <element signature="e#669#670#0" expanded="true" />
+            <element signature="e#696#697#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VisitorOfFiles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="70" column="31" lean-forward="true" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3264#3265#0" expanded="true" />
+            <element signature="e#3324#3325#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/javax/swing/tree/DefaultTreeCellRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7599">
+          <caret line="617" column="18" lean-forward="true" selection-start-line="617" selection-start-column="18" selection-end-line="617" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/awt/Component.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="234" column="7" lean-forward="true" selection-start-line="234" selection-start-column="7" selection-end-line="234" selection-end-column="7" />
+          <folding>
+            <element signature="e#113980#113981#0" expanded="true" />
+            <element signature="e#114027#114028#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MyRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="21" lean-forward="false" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
-          <folding />
+        <state relative-caret-position="-161">
+          <caret line="16" column="44" lean-forward="false" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1712#1713#0" expanded="true" />
+            <element signature="e#1764#1765#0" expanded="true" />
+            <element signature="e#1805#1806#0" expanded="true" />
+            <element signature="e#1842#1843#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

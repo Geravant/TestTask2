@@ -37,8 +37,8 @@ class VisitorOfFiles {
         final MyRenderer loadCellRenderer = new MyRenderer();
         tree.setCellRenderer(loadCellRenderer);
 
-        JScrollPane jsp = new JScrollPane(tree);
-        JFrame jfrm = new JFrame();
+        final JScrollPane jsp = new JScrollPane(tree);
+        final JFrame jfrm = new JFrame();
         jfrm.setSize(1000,500);
         jfrm.add(jsp);
         jfrm.setVisible(true);
@@ -56,10 +56,22 @@ class VisitorOfFiles {
                 Thread lazyloadrun = new Thread(lazyload);
                 lazyloadrun.start();
                 lazyload.getNode().setLoading(true);
-                loadCellRenderer.repaint();
+                loadCellRenderer.setCurrentLoading(lazyload.getNode().getUserObject());
+                treeModel.nodeChanged(lazyload.getNode());
+                System.out.println(lazyload.getNode().getUserObject()+"5");
+                System.out.println(lazyload.getNode().getUserObject() == loadCellRenderer.getCurrentLoading());
+                //treeModel.reload(lazyload.getNode());
+                jsp.revalidate();
                 loadCellRenderer.revalidate();
+                tree.revalidate();
+                jfrm.revalidate();
+                jsp.repaint();
+                tree.repaint();
+                loadCellRenderer.repaint();
+                jfrm.repaint();
+
                 try {
-                    lazyloadrun.sleep(2000);
+                    lazyloadrun.sleep(500);
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }

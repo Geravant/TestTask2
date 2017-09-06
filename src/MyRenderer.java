@@ -4,6 +4,7 @@ import java.awt.*;
 
 public class MyRenderer extends DefaultTreeCellRenderer {
     ImageIcon tutorialIcon = createImageIcon("load.png", "loading icon");
+    private Object currentLoading;
 
     public MyRenderer() {
     }
@@ -13,12 +14,12 @@ public class MyRenderer extends DefaultTreeCellRenderer {
                                                   int row,boolean hasFocus) {
         super.getTreeCellRendererComponent(tree, value, sel,
                 expanded, leaf, row, hasFocus);
-        FileTreeNode nodeObj = (FileTreeNode)value;
+        //FileTreeNode nodeObj = (FileTreeNode)value;
         // check whatever you need to on the node user object
-        if (nodeObj.isLoading()) {
+        if (value == currentLoading) {
             setIcon(tutorialIcon);
         } else {
-            //setIcon(tutorialIcon);
+           // setIcon(tutorialIcon);
         }
         return this;
     }
@@ -36,5 +37,17 @@ public class MyRenderer extends DefaultTreeCellRenderer {
             System.err.println("Couldn't find file: " + path);
             return null;
         }
+    }
+
+    @Override
+    public void repaint() {
+    }
+
+    public void setCurrentLoading(Object currentLoading) {
+        this.currentLoading = currentLoading;
+    }
+
+    public Object getCurrentLoading() {
+        return currentLoading;
     }
 }
