@@ -139,22 +139,22 @@ class VisitorOfFiles {
             }
         });
 
-        tree.addTreeWillExpandListener(new TreeWillExpandListener() {
-            @Override
-            public void treeWillExpand(TreeExpansionEvent e) throws ExpandVetoException {
-
-                LazyLoad lazyload = new LazyLoad(e);
-                loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
-
-                treeModel.nodeChanged(lazyload.getNode());
-                treeModel.nodeStructureChanged(lazyload.getNode());
-
-            }
-
-            @Override
-            public void treeWillCollapse(TreeExpansionEvent event) throws ExpandVetoException {
-
-            }
-        });
+//        tree.addTreeWillExpandListener(new TreeWillExpandListener() {
+//            @Override
+//            public void treeWillExpand(TreeExpansionEvent e) throws ExpandVetoException {
+//
+//                LazyLoad lazyload = new LazyLoad(e);
+//                loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
+//
+//                treeModel.nodeChanged(lazyload.getNode());
+//                treeModel.nodeStructureChanged(lazyload.getNode());
+//
+//            }
+//
+//            @Override
+//            public void treeWillCollapse(TreeExpansionEvent event) throws ExpandVetoException {
+//
+//            }
+//        });
     }
 }
