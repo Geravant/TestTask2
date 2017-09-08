@@ -1,11 +1,13 @@
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.TreePath;
 import java.awt.*;
 
 public class MyRenderer extends DefaultTreeCellRenderer {
     ImageIcon tutorialIcon = createImageIcon("load.png", "loading icon");
     private Object currentLoading;
     private FileTreeNode currentLoadingNode;
+    private TreePath currentLoadingNodePath;
 
     public MyRenderer() {
         super();
@@ -54,5 +56,13 @@ public class MyRenderer extends DefaultTreeCellRenderer {
 
     public void setCurrentLoadingNode(FileTreeNode currentLoadingNode) {
         this.currentLoadingNode = currentLoadingNode;
+    }
+
+    public TreePath getCurrentLoadingNodePath() {
+        return currentLoadingNodePath;
+    }
+
+    public void setCurrentLoadingNodePath(TreePath currentLoadingNodePath) {
+        this.currentLoadingNodePath = currentLoadingNodePath;
     }
 }

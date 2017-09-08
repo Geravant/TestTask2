@@ -52,12 +52,12 @@ class VisitorOfFiles {
             @Override
             public synchronized void treeExpanded(TreeExpansionEvent e) {
 
-                Thread currentThread = Thread.currentThread();
+                final Thread currentThread = Thread.currentThread();
 
                 LazyLoad lazyload = new LazyLoad(e);
                 loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
                 loadCellRenderer.setCurrentLoadingNode(lazyload.getNode());
-
+                loadCellRenderer.setCurrentLoadingNodePath(e.getPath());
                 treeModel.nodeStructureChanged(lazyload.getNode());
                 Thread lazyloadrun = new Thread(lazyload);
                 SwingUtilities.invokeLater(lazyload);
@@ -65,13 +65,13 @@ class VisitorOfFiles {
                     @Override
                     public void run() {
                         loadCellRenderer.setCurrentLoading(null);
-                        treeModel.nodeChanged(loadCellRenderer.getCurrentLoadingNode());
+                        //treeModel.nodeChanged(loadCellRenderer.getCurrentLoadingNode());
+                        treeModel.nodeStructureChanged(loadCellRenderer.getCurrentLoadingNode());
+                        currentThread.run();
                         treeModel.nodeStructureChanged(loadCellRenderer.getCurrentLoadingNode());
 
                     }
                 });
-
-//                lazyloadrun.start();
                 lazyload.getNode().setLoading(true);
 //                loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
 //
