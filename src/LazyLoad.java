@@ -1,4 +1,5 @@
 import javax.swing.event.TreeExpansionEvent;
+import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import java.io.File;
 import java.io.IOException;
@@ -74,6 +75,7 @@ public class LazyLoad implements Runnable{
 
         currentLoading = node.getUserObject().toString();
         Thread.currentThread().interrupt();
+
     }
 
     public FileTreeNode getNode() {
@@ -88,6 +90,10 @@ public class LazyLoad implements Runnable{
     public Object getCurrentLoading(Object object) {
         object = currentLoading;
         return object;
+    }
+
+    public void nodeRendererUpdate(DefaultTreeModel treeModel) {
+        treeModel.nodeStructureChanged(this.getNode());
     }
 
 }

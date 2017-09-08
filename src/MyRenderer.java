@@ -5,6 +5,7 @@ import java.awt.*;
 public class MyRenderer extends DefaultTreeCellRenderer {
     ImageIcon tutorialIcon = createImageIcon("load.png", "loading icon");
     private Object currentLoading;
+    private FileTreeNode currentLoadingNode;
 
     public MyRenderer() {
         super();
@@ -45,5 +46,13 @@ public class MyRenderer extends DefaultTreeCellRenderer {
 
     public Object getCurrentLoading() {
         return currentLoading;
+    }
+
+    public FileTreeNode getCurrentLoadingNode() {
+        return currentLoadingNode;
+    }
+
+    public void setCurrentLoadingNode(FileTreeNode currentLoadingNode) {
+        this.currentLoadingNode = currentLoadingNode;
     }
 }

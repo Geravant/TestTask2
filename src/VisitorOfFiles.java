@@ -56,24 +56,22 @@ class VisitorOfFiles {
 
                 LazyLoad lazyload = new LazyLoad(e);
                 loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
+                loadCellRenderer.setCurrentLoadingNode(lazyload.getNode());
 
                 treeModel.nodeStructureChanged(lazyload.getNode());
+                Thread lazyloadrun = new Thread(lazyload);
+                SwingUtilities.invokeLater(lazyload);
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        try {
-                            Thread.sleep(10000);
-                        } catch (InterruptedException e1) {
-                            e1.printStackTrace();
-                        }
                         loadCellRenderer.setCurrentLoading(null);
+                        treeModel.nodeChanged(loadCellRenderer.getCurrentLoadingNode());
+                        treeModel.nodeStructureChanged(loadCellRenderer.getCurrentLoadingNode());
 
-//                        treeModel.nodeChanged(lazyload.getNode());
-//                        treeModel.nodeStructureChanged(lazyload.getNode());
                     }
                 });
-                Thread lazyloadrun = new Thread(lazyload);
-                lazyloadrun.start();
+
+//                lazyloadrun.start();
                 lazyload.getNode().setLoading(true);
 //                loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
 //
@@ -88,7 +86,7 @@ class VisitorOfFiles {
 
                 treeModel.nodeStructureChanged(lazyload.getNode());
                 try {
-                    wait(1000);
+                    wait(2000);
                     System.out.println("waited");
 
                 } catch (InterruptedException e1) {
