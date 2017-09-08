@@ -67,6 +67,13 @@ class VisitorOfFiles {
                         loadCellRenderer.setCurrentLoading(null);
                         //treeModel.nodeChanged(loadCellRenderer.getCurrentLoadingNode());
                         treeModel.nodeStructureChanged(loadCellRenderer.getCurrentLoadingNode());
+                        try {
+                            Thread.sleep(2000);
+                            System.out.println("waited");
+
+                        } catch (InterruptedException e1) {
+                            e1.printStackTrace();
+                        }
                         currentThread.run();
                         treeModel.nodeStructureChanged(loadCellRenderer.getCurrentLoadingNode());
 
@@ -85,25 +92,25 @@ class VisitorOfFiles {
                 loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
 
                 treeModel.nodeStructureChanged(lazyload.getNode());
-                try {
-                    wait(2000);
-                    System.out.println("waited");
-
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
-                }
-                while (lazyloadrun.isAlive()) {
-                    System.out.println(loadCellRenderer.getCurrentLoading());
-                    System.out.println(lazyload.getNode());
-                    treeModel.nodeChanged(lazyload.getNode());
-                    treeModel.nodeStructureChanged(lazyload.getNode());
-
-                    try {
-                        wait(100);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                }
+//                try {
+//                    wait(2000);
+//                    System.out.println("waited");
+//
+//                } catch (InterruptedException e1) {
+//                    e1.printStackTrace();
+//                }
+//                while (lazyloadrun.isAlive()) {
+//                    System.out.println(loadCellRenderer.getCurrentLoading());
+//                    System.out.println(lazyload.getNode());
+//                    treeModel.nodeChanged(lazyload.getNode());
+//                    treeModel.nodeStructureChanged(lazyload.getNode());
+//
+//                    try {
+//                        wait(100);
+//                    } catch (InterruptedException e1) {
+//                        e1.printStackTrace();
+//                    }
+//                }
                 //loadCellRenderer.setCurrentLoading(null);
                 System.out.println(loadCellRenderer.getCurrentLoading());
 
