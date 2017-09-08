@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;
+import javax.swing.event.TreeWillExpandListener;
 import javax.swing.tree.*;
 import java.awt.*;
 import java.io.*;
@@ -51,32 +52,110 @@ class VisitorOfFiles {
             @Override
             public synchronized void treeExpanded(TreeExpansionEvent e) {
 
+                Thread currentThread = Thread.currentThread();
 
                 LazyLoad lazyload = new LazyLoad(e);
+                loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
+
+                treeModel.nodeStructureChanged(lazyload.getNode());
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(10000);
+                        } catch (InterruptedException e1) {
+                            e1.printStackTrace();
+                        }
+                        loadCellRenderer.setCurrentLoading(null);
+
+//                        treeModel.nodeChanged(lazyload.getNode());
+//                        treeModel.nodeStructureChanged(lazyload.getNode());
+                    }
+                });
                 Thread lazyloadrun = new Thread(lazyload);
                 lazyloadrun.start();
                 lazyload.getNode().setLoading(true);
-                loadCellRenderer.setCurrentLoading(lazyload.getNode().getUserObject().toString());
-                treeModel.nodeChanged(lazyload.getNode());
+//                loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
+//
+//                treeModel.nodeStructureChanged(lazyload.getNode());
+                System.out.println(System.nanoTime()+"C1");
                 System.out.println(lazyload.getNode().getUserObject()+"5");
                 System.out.println(lazyload.getNode().getUserObject() == loadCellRenderer.getCurrentLoading());
 
+                System.out.println(lazyloadrun.isAlive()+"prelife");
+
+                loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
+
+                treeModel.nodeStructureChanged(lazyload.getNode());
                 try {
-                    lazyloadrun.sleep(500);
-                    //loadCellRenderer.setCurrentLoading(null);
+                    wait(1000);
+                    System.out.println("waited");
+
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }
+                while (lazyloadrun.isAlive()) {
+                    System.out.println(loadCellRenderer.getCurrentLoading());
+                    System.out.println(lazyload.getNode());
+                    treeModel.nodeChanged(lazyload.getNode());
+                    treeModel.nodeStructureChanged(lazyload.getNode());
+
+                    try {
+                        wait(100);
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                //loadCellRenderer.setCurrentLoading(null);
+                System.out.println(loadCellRenderer.getCurrentLoading());
+
                 treeModel.nodeStructureChanged(lazyload.getNode());
 
+                System.out.println(lazyloadrun.isAlive()+"postpostlife");
+                treeModel.nodeStructureChanged(lazyload.getNode());
+                System.out.println(System.nanoTime()+"C2");
 
-                lazyloadrun.interrupt();
-                lazyload.getNode().setLoading(false);
+                //treeModel.nodeChanged(lazyload.getNode());
+
+                //lazyloadrun.interrupt();
+//                if (!lazyloadrun.isInterrupted()) {
+//                    loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
+//                    treeModel.nodeStructureChanged(lazyload.getNode());
+//                    System.out.println(System.nanoTime()+"C3");
+//                }
+//
+//                else {
+//                    loadCellRenderer.setCurrentLoading(null);
+//                    treeModel.nodeStructureChanged(lazyload.getNode());
+//                    System.out.println(System.nanoTime()+"C4");
+//                }
+                System.out.println(Thread.currentThread()+"VoF");
+                //loadCellRenderer.setCurrentLoading(null);
+                //treeModel.nodeChanged(lazyload.getNode());
+                //lazyload.getNode().setLoading(false);
 
             }
             @Override
             public void treeCollapsed(TreeExpansionEvent e) {
                 System.out.println("Closed");
+            }
+        });
+
+        tree.addTreeWillExpandListener(new TreeWillExpandListener() {
+            @Override
+            public void treeWillExpand(TreeExpansionEvent e) throws ExpandVetoException {
+
+                LazyLoad lazyload = new LazyLoad(e);
+                loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
+
+                treeModel.nodeChanged(lazyload.getNode());
+                treeModel.nodeStructureChanged(lazyload.getNode());
+
+            }
+
+            @Override
+            public void treeWillCollapse(TreeExpansionEvent event) throws ExpandVetoException {
+
             }
         });
     }

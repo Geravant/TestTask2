@@ -27,10 +27,13 @@ public class LazyLoad implements Runnable{
 
         myFileVisitor = new MyFileVisitor(dirname);
         node = (FileTreeNode) e.getPath().getLastPathComponent();
-        currentLoading = node.getUserObject();
+        currentLoading = node.getUserObject().toString();
     }
 
+
+
     public void run() {
+
         try {
             Files.walkFileTree(Paths.get(dirname), EnumSet.of(FileVisitOption.FOLLOW_LINKS), 1, myFileVisitor);
             Vector treePathes = myFileVisitor.getPathes();
@@ -68,11 +71,23 @@ public class LazyLoad implements Runnable{
             node.remove(0);
 
         }
+
+        currentLoading = node.getUserObject().toString();
+        Thread.currentThread().interrupt();
     }
 
     public FileTreeNode getNode() {
         return node;
     }
 
+
+    public Object getCurrentLoading() {
+        return currentLoading;
+    }
+
+    public Object getCurrentLoading(Object object) {
+        object = currentLoading;
+        return object;
+    }
 
 }

@@ -15,13 +15,11 @@ public class MyRenderer extends DefaultTreeCellRenderer {
                                                   int row,boolean hasFocus) {
         super.getTreeCellRendererComponent(tree, value, sel,
                 expanded, leaf, row, hasFocus);
-        //FileTreeNode nodeObj = (FileTreeNode)value;
-        // check whatever you need to on the node user object
         if (value.toString() == currentLoading) {
             setIcon(tutorialIcon);
-        } else {
-           // setIcon(tutorialIcon);
+            System.out.println(value.toString()+"repainting");
         }
+        //else {System.out.println(value.toString()+"is not repainting");}
         return this;
     }
 
