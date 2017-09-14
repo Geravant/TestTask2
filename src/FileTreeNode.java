@@ -1,4 +1,5 @@
 import javax.swing.tree.DefaultMutableTreeNode;
+import java.io.File;
 
 public class FileTreeNode extends DefaultMutableTreeNode {
     private boolean isLoading;
@@ -33,6 +34,10 @@ public class FileTreeNode extends DefaultMutableTreeNode {
 
     public void setDir(boolean dir) {
         isDir = dir;
+    }
+
+    public void createDirHere() {
+        new File("C:\\Directory1").mkdir();
     }
 
 }
