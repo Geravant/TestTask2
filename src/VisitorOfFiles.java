@@ -4,6 +4,8 @@ import javax.swing.event.TreeExpansionListener;
 import javax.swing.event.TreeWillExpandListener;
 import javax.swing.tree.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Vector;
 
@@ -40,13 +42,22 @@ class VisitorOfFiles {
 
         final JScrollPane jsp = new JScrollPane(tree);
         final JFrame jfrm = new JFrame();
-        jfrm.setSize(1000,500);
+        //jfrm.setLayout(new FlowLayout(FlowLayout.LEFT));
+        jfrm.setSize(jsp.getPreferredSize().width+200,jsp.getPreferredSize().height);
         jfrm.add(jsp);
         jfrm.setVisible(true);
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        JLabel jMenuLab = new JLabel();
+        MenuBar jmb = new MenuBar();
+
+        jfrm.setJMenuBar(jmb);
+
+
+
         JLabel jLab = new JLabel();
         jfrm.add(jLab, BorderLayout.SOUTH);
+        jfrm.add(jMenuLab, BorderLayout.SOUTH);
 
         tree.addTreeExpansionListener(new TreeExpansionListener() {
             @Override
