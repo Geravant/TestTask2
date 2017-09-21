@@ -35,7 +35,10 @@ public class LazyLoad implements Runnable{
 
     public void run() {
 
+
+
         try {
+
             Files.walkFileTree(Paths.get(dirname), EnumSet.of(FileVisitOption.FOLLOW_LINKS), 1, myFileVisitor);
             Vector treePathes = myFileVisitor.getPathes();
             if (myFileVisitor.getPathes().size() != 0){
@@ -60,6 +63,7 @@ public class LazyLoad implements Runnable{
                     newNode.setAllowsChildren(true);
 
                     FileTreeNode plug = new FileTreeNode("Empty folder");
+
                     newNode.add(plug);
                     System.out.println('1');
 

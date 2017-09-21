@@ -1,3 +1,5 @@
+import com.sun.org.apache.xpath.internal.functions.FuncFalse;
+
 import javax.swing.*;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;
@@ -39,13 +41,15 @@ class VisitorOfFiles {
         tree.setRootVisible(false);
         final MyRenderer loadCellRenderer = new MyRenderer();
         tree.setCellRenderer(loadCellRenderer);
+        FileTreeNode plug = new FileTreeNode("Empty Folder");
+        loadCellRenderer.setPlug(plug.getUserObject().toString());
 
         final JScrollPane jsp = new JScrollPane(tree);
         final JFrame jfrm = new JFrame();
-        //jfrm.setLayout(new FlowLayout(FlowLayout.LEFT));
         jfrm.setSize(jsp.getPreferredSize().width+200,jsp.getPreferredSize().height);
         jfrm.add(jsp);
         jfrm.setVisible(true);
+        tree.setShowsRootHandles(false);
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel jMenuLab = new JLabel();
@@ -72,8 +76,11 @@ class VisitorOfFiles {
                 loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
                 loadCellRenderer.setCurrentLoadingNode(lazyload.getNode());
                 loadCellRenderer.setCurrentLoadingNodePath(e.getPath());
+                FileTreeNode plugNode =(FileTreeNode) lazyload.getNode().getChildAt(0);
+                loadCellRenderer.setPlug(plugNode.getUserObject().toString());
                 treeModel.nodeStructureChanged(lazyload.getNode());
                 Thread lazyloadrun = new Thread(lazyload);
+                //lazyload.getNode().remove(0);
                 SwingUtilities.invokeLater(lazyload);
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
@@ -157,6 +164,8 @@ class VisitorOfFiles {
             @Override
             public void treeCollapsed(TreeExpansionEvent e) {
                 System.out.println("Closed");
+                LazyLoad lazyload = new LazyLoad(e);
+                lazyload.getNode().setDir(true);
             }
         });
 

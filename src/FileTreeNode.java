@@ -4,10 +4,12 @@ import java.io.File;
 public class FileTreeNode extends DefaultMutableTreeNode {
     private boolean isLoading;
     private boolean isDir;
+    private boolean isPlug;
 
     FileTreeNode() {
         isLoading = false;
         isDir = false;
+        isPlug = true;
     }
 
     FileTreeNode(String string) {
@@ -40,4 +42,11 @@ public class FileTreeNode extends DefaultMutableTreeNode {
         new File("C:\\Directory1").mkdir();
     }
 
+    public boolean isPlug() {
+        return isPlug;
+    }
+
+    public void setPlug(boolean plug) {
+        isPlug = plug;
+    }
 }

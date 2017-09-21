@@ -1,16 +1,24 @@
+import sun.swing.ImageIconUIResource;
+
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreePath;
 import java.awt.*;
 
 public class MyRenderer extends DefaultTreeCellRenderer {
-    ImageIcon tutorialIcon = createImageIcon("load.png", "loading icon");
+    ImageIcon loadIcon = createImageIcon("load.png", "loading icon");
+    ImageIcon fileIcon = createImageIcon("file.png", "file icon");
+    ImageIcon folderIcon = createImageIcon("folder.png", "file icon");
+    ImageIcon openfolderIcon = createImageIcon("openfolder.png", "file icon");
     private Object currentLoading;
     private FileTreeNode currentLoadingNode;
+    private Object plug;
     private TreePath currentLoadingNodePath;
+    private JLabel lblNull = new JLabel();
 
     public MyRenderer() {
         super();
+        currentLoading = new Object();
     }
 
     public Component getTreeCellRendererComponent(JTree tree,
@@ -18,12 +26,43 @@ public class MyRenderer extends DefaultTreeCellRenderer {
                                                   int row,boolean hasFocus) {
         super.getTreeCellRendererComponent(tree, value, sel,
                 expanded, leaf, row, hasFocus);
+
+
+        Component thingToPaint = this;
+//        JTree.DropLocation dropLocation = tree.getDropLocation();
+//        if (dropLocation.getPath().getLastPathComponent().toString() == currentLoading) {
+//
+//            setIcon(loadIcon);
+//            thingToPaint = this;
+//        }
+
         if (value.toString() == currentLoading) {
-            setIcon(tutorialIcon);
-            System.out.println(value.toString()+"repainting");
+            setIcon(loadIcon);
+            thingToPaint = this;
         }
-        //else {System.out.println(value.toString()+"is not repainting");}
-        return this;
+
+
+        else if (!expanded){
+            setIcon(folderIcon);
+            thingToPaint = this;
+        }
+
+        else if (expanded){
+            setIcon(openfolderIcon);
+            thingToPaint = this;
+        }
+
+        if (leaf) {
+            setIcon(fileIcon);
+            thingToPaint = this;
+        }
+        if (value.toString() == plug) {
+            thingToPaint = lblNull;
+        }
+
+
+        return thingToPaint;
+
     }
 
     protected ImageIcon createImageIcon(String path,
@@ -32,7 +71,7 @@ public class MyRenderer extends DefaultTreeCellRenderer {
         if (imgURL != null) {
             ImageIcon imageIcon = new ImageIcon(imgURL, description);
             Image image = imageIcon.getImage(); // transform it
-            Image newimg = image.getScaledInstance(15, 10,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+            Image newimg = image.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
             imageIcon = new ImageIcon(newimg);  // transform it back
             return imageIcon;
         } else {
@@ -64,5 +103,9 @@ public class MyRenderer extends DefaultTreeCellRenderer {
 
     public void setCurrentLoadingNodePath(TreePath currentLoadingNodePath) {
         this.currentLoadingNodePath = currentLoadingNodePath;
+    }
+
+    public void setPlug(Object plug) {
+        this.plug = plug;
     }
 }

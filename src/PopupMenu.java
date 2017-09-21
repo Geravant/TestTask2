@@ -22,6 +22,7 @@ public class PopupMenu extends JPopupMenu implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         String comStr = e.getActionCommand();
 
-        if(comStr.equals("Remove")) {}
+        if(comStr.equals("Remove")) {
+        }
     }
 }
