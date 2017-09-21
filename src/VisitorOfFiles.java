@@ -59,6 +59,9 @@ class VisitorOfFiles {
         jfrm.add(jLab, BorderLayout.SOUTH);
         jfrm.add(jMenuLab, BorderLayout.SOUTH);
 
+        PopupMenu jpu = new PopupMenu();
+        tree.addMouseListener(new ActionsMenu(jpu));
+
         tree.addTreeExpansionListener(new TreeExpansionListener() {
             @Override
             public synchronized void treeExpanded(TreeExpansionEvent e) {

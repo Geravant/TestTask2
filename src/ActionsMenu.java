@@ -1,42 +1,32 @@
-import javax.swing.event.MenuKeyEvent;
-import javax.swing.event.MenuKeyListener;
-import java.util.Arrays;
 
-public class ActionsMenu implements MenuKeyListener {
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        String comStr = e.getActionCommand();
-//
-//        if(comStr.equals("Remove")) {}
-//
-//        if(comStr.equals("Exit")) {System.exit(0);}
-//    }
+public class ActionsMenu extends MouseAdapter {
+    private PopupMenu jpu;
+
+    public ActionsMenu(PopupMenu popupMenu){
+        jpu = popupMenu;
+    }
+
 
     @Override
-    public void menuKeyTyped(MenuKeyEvent e) {
-        String comStr = Arrays.toString(e.getPath());
-
-        if(comStr.equals("Remove")) {}
-
-        if(comStr.equals("Exit")) {System.exit(0);}
-
-        System.out.println(comStr);
+    public void mousePressed(MouseEvent e) {
+        if(e.isPopupTrigger()) {
+            jpu.show(e.getComponent(), e.getX(), e.getY());
+        }
     }
 
     @Override
-    public void menuKeyPressed(MenuKeyEvent e) {
-        String comStr = Arrays.toString(e.getPath());
-
-        if(comStr.equals("Remove")) {}
-
-        if(comStr.equals("Exit")) {System.exit(0);}
-
-        System.out.println(comStr);
+    public void mouseReleased(MouseEvent e) {
+        if(e.isPopupTrigger()) {
+            jpu.show(e.getComponent(), e.getX(), e.getY());
+        }
     }
 
-    @Override
-    public void menuKeyReleased(MenuKeyEvent e) {
-
+    public void setJpu(PopupMenu popupMenu) {
+        jpu = popupMenu;
     }
+
 }
