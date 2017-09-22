@@ -1,4 +1,5 @@
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeNode;
 import java.io.File;
 
 public class FileTreeNode extends DefaultMutableTreeNode {
@@ -39,6 +40,12 @@ public class FileTreeNode extends DefaultMutableTreeNode {
     }
 
     public void createDirHere() {
+        String dirname = "";
+        TreeNode[] pathParts =this.getPath();
+        for (int i = 0; i< pathParts.length;  i++){
+            dirname = dirname+File.separator+(FileTreeNode)pathParts[i];
+        }
+
         new File("C:\\Directory1").mkdir();
     }
 
@@ -49,4 +56,8 @@ public class FileTreeNode extends DefaultMutableTreeNode {
     public void setPlug(boolean plug) {
         isPlug = plug;
     }
+
+
 }
+
+

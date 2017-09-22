@@ -1,13 +1,9 @@
-import com.sun.org.apache.xpath.internal.functions.FuncFalse;
 
 import javax.swing.*;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;
-import javax.swing.event.TreeWillExpandListener;
 import javax.swing.tree.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Vector;
 
@@ -16,7 +12,7 @@ class VisitorOfFiles {
         SystemRoots systemroots = new SystemRoots();
         Vector<String> dirname = new Vector();
         for (File f: systemroots.getSystemRoots()) {
-            System.out.println(f.getAbsolutePath());
+//            System.out.println(f.getAbsolutePath());
             dirname.addElement(f.getAbsolutePath());
         }
         FileTreeNode root = new FileTreeNode("UltimateRoot");
@@ -29,10 +25,17 @@ class VisitorOfFiles {
             node.setAllowsChildren(true);
             FileTreeNode plug = new FileTreeNode("Empty Folder");
             node.add(plug);
-            System.out.println(dir+"pluged");
+//            System.out.println(dir+"pluged");
 //
                 treeModel.nodeStructureChanged(node);
             }
+
+        final FileTreeNode[] folderRoot = {new FileTreeNode("UltimateFolderRoot")};
+        folderRoot[0].setAllowsChildren(true);
+
+        FileTreeNode plug = new FileTreeNode("Empty Folder");
+        folderRoot[0].add(plug);
+        final DefaultTreeModel folderModel = new DefaultTreeModel(folderRoot[0]);
 
         final JTree tree = new JTree(treeModel);
         tree.setEditable(true);
@@ -41,19 +44,31 @@ class VisitorOfFiles {
         tree.setRootVisible(false);
         final MyRenderer loadCellRenderer = new MyRenderer();
         tree.setCellRenderer(loadCellRenderer);
-        FileTreeNode plug = new FileTreeNode("Empty Folder");
         loadCellRenderer.setPlug(plug.getUserObject().toString());
 
-        final JScrollPane jsp = new JScrollPane(tree);
+        final JTree folder = new JTree(folderModel);
+        folder.setEditable(true);
+        folder.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        folder.setShowsRootHandles(false);
+        folder.setRootVisible(false);
+        folder.setCellRenderer(loadCellRenderer);
+
+
+        final JScrollPane jspTree = new JScrollPane(tree);
+
+        final JScrollPane jspFolder = new JScrollPane(folder);
         final JFrame jfrm = new JFrame();
-        jfrm.setSize(jsp.getPreferredSize().width+200,jsp.getPreferredSize().height);
-        jfrm.add(jsp);
+        jfrm.setSize(jspTree.getPreferredSize().width+200,jspTree.getPreferredSize().height);
+        final Container content = jfrm.getContentPane();
+        content.setLayout(new BoxLayout(content,BoxLayout.X_AXIS));
+        content.add(jspTree);
+        content.add(jspFolder);
         jfrm.setVisible(true);
         tree.setShowsRootHandles(false);
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel jMenuLab = new JLabel();
-        MenuBar jmb = new MenuBar();
+        final MenuBar jmb = new MenuBar();
 
         jfrm.setJMenuBar(jmb);
 
@@ -63,7 +78,8 @@ class VisitorOfFiles {
         jfrm.add(jLab, BorderLayout.SOUTH);
         jfrm.add(jMenuLab, BorderLayout.SOUTH);
 
-        PopupMenu jpu = new PopupMenu();
+        final PopupMenu jpu = new PopupMenu();
+        jpu.setCurrentFolder("");
         tree.addMouseListener(new ActionsMenu(jpu));
 
         tree.addTreeExpansionListener(new TreeExpansionListener() {
@@ -72,7 +88,8 @@ class VisitorOfFiles {
 
                 final Thread currentThread = Thread.currentThread();
 
-                LazyLoad lazyload = new LazyLoad(e);
+                final LazyLoad lazyload = new LazyLoad(e);
+
                 loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
                 loadCellRenderer.setCurrentLoadingNode(lazyload.getNode());
                 loadCellRenderer.setCurrentLoadingNodePath(e.getPath());
@@ -80,17 +97,14 @@ class VisitorOfFiles {
                 loadCellRenderer.setPlug(plugNode.getUserObject().toString());
                 treeModel.nodeStructureChanged(lazyload.getNode());
                 Thread lazyloadrun = new Thread(lazyload);
-                //lazyload.getNode().remove(0);
                 SwingUtilities.invokeLater(lazyload);
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
                         loadCellRenderer.setCurrentLoading(null);
-                        //treeModel.nodeChanged(loadCellRenderer.getCurrentLoadingNode());
                         treeModel.nodeStructureChanged(loadCellRenderer.getCurrentLoadingNode());
                         try {
                             Thread.sleep(2000);
-                            System.out.println("waited");
 
                         } catch (InterruptedException e1) {
                             e1.printStackTrace();
@@ -101,90 +115,47 @@ class VisitorOfFiles {
                     }
                 });
                 lazyload.getNode().setLoading(true);
-//                loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
-//
-//                treeModel.nodeStructureChanged(lazyload.getNode());
-                System.out.println(System.nanoTime()+"C1");
-                System.out.println(lazyload.getNode().getUserObject()+"5");
-                System.out.println(lazyload.getNode().getUserObject() == loadCellRenderer.getCurrentLoading());
-
-                System.out.println(lazyloadrun.isAlive()+"prelife");
 
                 loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
 
                 treeModel.nodeStructureChanged(lazyload.getNode());
-//                try {
-//                    wait(2000);
-//                    System.out.println("waited");
-//
-//                } catch (InterruptedException e1) {
-//                    e1.printStackTrace();
-//                }
-//                while (lazyloadrun.isAlive()) {
-//                    System.out.println(loadCellRenderer.getCurrentLoading());
-//                    System.out.println(lazyload.getNode());
-//                    treeModel.nodeChanged(lazyload.getNode());
-//                    treeModel.nodeStructureChanged(lazyload.getNode());
-//
-//                    try {
-//                        wait(100);
-//                    } catch (InterruptedException e1) {
-//                        e1.printStackTrace();
-//                    }
-//                }
-                //loadCellRenderer.setCurrentLoading(null);
-                System.out.println(loadCellRenderer.getCurrentLoading());
+
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        TreeModel sub = new DefaultTreeModel(lazyload.getNode());
+                        JTree subFolder = new JTree(sub);
+                        subFolder.addMouseListener(new ActionsMenu(jpu));
+                        jpu.setCurrentFolder(lazyload.getDirname());
+                        jmb.setCurrentFolder(lazyload.getDirname());
+                        subFolder.setRootVisible(false);
+                        subFolder.setEditable(true);
+                        subFolder.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+                        subFolder.setShowsRootHandles(false);
+                        subFolder.setRootVisible(false);
+                        subFolder.setCellRenderer(loadCellRenderer);
+                        JScrollPane jspSubFolder = new JScrollPane(subFolder);
+                        content.add(jspSubFolder);
+                        int componentToRemove;
+                        if (content.getComponentZOrder(jspFolder) > 0) {
+                            componentToRemove = content.getComponentZOrder(jspFolder);
+                        }
+                        else componentToRemove = content.getComponentZOrder(jspSubFolder)-1;
+                        content.remove(componentToRemove);
+                        content.validate();
+                    }
+                });
+
 
                 treeModel.nodeStructureChanged(lazyload.getNode());
-
-                System.out.println(lazyloadrun.isAlive()+"postpostlife");
-                treeModel.nodeStructureChanged(lazyload.getNode());
-                System.out.println(System.nanoTime()+"C2");
-
-                //treeModel.nodeChanged(lazyload.getNode());
-
-                //lazyloadrun.interrupt();
-//                if (!lazyloadrun.isInterrupted()) {
-//                    loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
-//                    treeModel.nodeStructureChanged(lazyload.getNode());
-//                    System.out.println(System.nanoTime()+"C3");
-//                }
-//
-//                else {
-//                    loadCellRenderer.setCurrentLoading(null);
-//                    treeModel.nodeStructureChanged(lazyload.getNode());
-//                    System.out.println(System.nanoTime()+"C4");
-//                }
-                System.out.println(Thread.currentThread()+"VoF");
-                //loadCellRenderer.setCurrentLoading(null);
-                //treeModel.nodeChanged(lazyload.getNode());
-                //lazyload.getNode().setLoading(false);
 
             }
             @Override
             public void treeCollapsed(TreeExpansionEvent e) {
-                System.out.println("Closed");
                 LazyLoad lazyload = new LazyLoad(e);
                 lazyload.getNode().setDir(true);
             }
         });
 
-//        tree.addTreeWillExpandListener(new TreeWillExpandListener() {
-//            @Override
-//            public void treeWillExpand(TreeExpansionEvent e) throws ExpandVetoException {
-//
-//                LazyLoad lazyload = new LazyLoad(e);
-//                loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
-//
-//                treeModel.nodeChanged(lazyload.getNode());
-//                treeModel.nodeStructureChanged(lazyload.getNode());
-//
-//            }
-//
-//            @Override
-//            public void treeWillCollapse(TreeExpansionEvent event) throws ExpandVetoException {
-//
-//            }
-//        });
     }
 }
