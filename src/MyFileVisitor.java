@@ -17,10 +17,8 @@ public class MyFileVisitor extends SimpleFileVisitor<Path> {
     }
 
     public FileVisitResult visitFile(Path path, BasicFileAttributes attribs) throws IOException {
-        //System.out.println(path);
         DefaultMutableTreeNode node = new DefaultMutableTreeNode(path.getFileName());
         top.add(node);
-        //System.out.println(node.getParent()+"\\"+node.toString());
         String treePath = node.getParent() + File.separator +node.toString();
         this.treePathes.addElement(node);
         return FileVisitResult.CONTINUE;

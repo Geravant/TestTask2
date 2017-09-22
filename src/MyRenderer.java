@@ -29,12 +29,6 @@ public class MyRenderer extends DefaultTreeCellRenderer {
 
 
         Component thingToPaint = this;
-//        JTree.DropLocation dropLocation = tree.getDropLocation();
-//        if (dropLocation.getPath().getLastPathComponent().toString() == currentLoading) {
-//
-//            setIcon(loadIcon);
-//            thingToPaint = this;
-//        }
 
         if (value.toString() == currentLoading) {
             setIcon(loadIcon);

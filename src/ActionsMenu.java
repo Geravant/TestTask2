@@ -1,5 +1,4 @@
 
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -25,8 +24,5 @@ public class ActionsMenu extends MouseAdapter {
         }
     }
 
-    public void setJpu(PopupMenu popupMenu) {
-        jpu = popupMenu;
-    }
 
 }

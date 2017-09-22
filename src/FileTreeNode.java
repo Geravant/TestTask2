@@ -39,16 +39,6 @@ public class FileTreeNode extends DefaultMutableTreeNode {
         isDir = dir;
     }
 
-    public void createDirHere() {
-        String dirname = "";
-        TreeNode[] pathParts =this.getPath();
-        for (int i = 0; i< pathParts.length;  i++){
-            dirname = dirname+File.separator+(FileTreeNode)pathParts[i];
-        }
-
-        new File("C:\\Directory1").mkdir();
-    }
-
     public boolean isPlug() {
         return isPlug;
     }

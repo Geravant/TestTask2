@@ -1,5 +1,4 @@
 import javax.swing.event.TreeExpansionEvent;
-import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +22,6 @@ public class LazyLoad implements Runnable{
         dirname = e.getPath().getPathComponent(1).toString();
         for(int i=2; i< dirDepth; i++) {
             dirname = dirname + File.separator+ e.getPath().getPathComponent(i);
-//            System.out.println(dirname+"1");
         }
 
         myFileVisitor = new MyFileVisitor(dirname);
@@ -47,25 +45,20 @@ public class LazyLoad implements Runnable{
             for (int fnum = 0; fnum < treePathes.size(); fnum++) {
                 FileTreeNode newNode = new FileTreeNode(treePathes.elementAt(fnum));
                 node.add(newNode);
-//                System.out.println(node.isLoading());
-//                System.out.println(newNode.isLoading());
 
                 String wannaBeDirName = new String();
                 TreeNode[] wannaBeDir = newNode.getPath();
                 for(int i = 1; i< wannaBeDir.length; i++) {
                     TreeNode wannaBeDirPart = wannaBeDir[i];
                     wannaBeDirName = wannaBeDirName + wannaBeDirPart.toString()+ File.separator;
-//                    System.out.println(wannaBeDirName);
                 }
                 File wannaBeDirFile = new File(wannaBeDirName);
-//                System.out.println(wannaBeDirName+"2");
                 if (wannaBeDirFile.isDirectory()) {
                     newNode.setAllowsChildren(true);
 
                     FileTreeNode plug = new FileTreeNode("Empty folder");
 
                     newNode.add(plug);
-//                    System.out.println('1');
 
                 }
 
@@ -78,7 +71,6 @@ public class LazyLoad implements Runnable{
         }
 
         currentLoading = node.getUserObject().toString();
-        //Thread.currentThread().interrupt();
 
     }
 

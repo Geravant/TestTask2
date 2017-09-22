@@ -4,14 +4,6 @@ import javax.swing.tree.TreeSelectionModel;
 import java.awt.*;
 
 public class GUI {
-    public void setTree(JTree tree) {
-        this.tree = tree;
-        this.tree.setEditable(true);
-        this.tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        this.tree.setShowsRootHandles(false);
-        this.tree.setRootVisible(false);
-        this.tree.setCellRenderer(loadCellRenderer);
-    }
 
     public void setFolder(JTree folder) {
         this.folder = folder;
@@ -22,41 +14,7 @@ public class GUI {
         this.folder.setCellRenderer(loadCellRenderer);
     }
 
-    public void setLoadCellRenderer(MyRenderer loadCellRenderer) {
-        this.loadCellRenderer = loadCellRenderer;
-    }
 
-    public void setJspTree(JScrollPane jspTree) {
-        this.jspTree = jspTree;
-    }
-
-    public void setJspFolder(JScrollPane jspFolder) {
-        this.jspFolder = jspFolder;
-    }
-
-    public void setJfrm(JFrame jfrm) {
-        this.jfrm = jfrm;
-    }
-
-    public void setContent(Container content) {
-        this.content = content;
-    }
-
-    public void setjMenuLab(JLabel jMenuLab) {
-        this.jMenuLab = jMenuLab;
-    }
-
-    public void setjLab(JLabel jLab) {
-        this.jLab = jLab;
-    }
-
-    public void setJmb(MenuBar jmb) {
-        this.jmb = jmb;
-    }
-
-    public void setJpu(PopupMenu jpu) {
-        this.jpu = jpu;
-    }
 
     private JTree tree;
     private JTree folder;
@@ -85,29 +43,18 @@ public class GUI {
         return loadCellRenderer;
     }
 
-    public JScrollPane getJspTree() {
-        return jspTree;
-    }
+
 
     public JScrollPane getJspFolder() {
         return jspFolder;
     }
 
-    public JFrame getJfrm() {
-        return jfrm;
-    }
 
     public Container getContent() {
         return content;
     }
 
-    public JLabel getjMenuLab() {
-        return jMenuLab;
-    }
 
-    public JLabel getjLab() {
-        return jLab;
-    }
 
     public MenuBar getJmb() {
         return jmb;
@@ -120,16 +67,6 @@ public class GUI {
     public DefaultTreeModel getTreeModel() {
         return treeModel;
     }
-
-    public DefaultTreeModel getSub() {
-        return sub;
-    }
-
-    public FileTreeNode getPlug() {
-        return plug;
-    }
-
-
 
     public GUI(DefaultTreeModel treeModel) {
         tree = new JTree(treeModel);

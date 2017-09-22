@@ -1,9 +1,7 @@
-
 import javax.swing.*;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;
 import javax.swing.tree.*;
-import java.awt.*;
 import java.io.*;
 import java.util.Vector;
 
@@ -12,7 +10,6 @@ class VisitorOfFiles {
         SystemRoots systemroots = new SystemRoots();
         Vector<String> dirname = new Vector();
         for (File f: systemroots.getSystemRoots()) {
-//            System.out.println(f.getAbsolutePath());
             dirname.addElement(f.getAbsolutePath());
         }
         FileTreeNode root = new FileTreeNode("UltimateRoot");
@@ -25,65 +22,10 @@ class VisitorOfFiles {
             node.setAllowsChildren(true);
             FileTreeNode plug = new FileTreeNode("Empty Folder");
             node.add(plug);
-//            System.out.println(dir+"pluged");
-//
-                treeModel.nodeStructureChanged(node);
+            treeModel.nodeStructureChanged(node);
             }
 
         final GUI programGUI = new GUI(treeModel);
-
-
-//        final FileTreeNode[] folderRoot = {new FileTreeNode("UltimateFolderRoot")};
-//        folderRoot[0].setAllowsChildren(true);
-//
-//        FileTreeNode plug = new FileTreeNode("Empty Folder");
-//        folderRoot[0].add(plug);
-//        final DefaultTreeModel folderModel = new DefaultTreeModel(folderRoot[0]);
-//
-//        final JTree tree = new JTree(treeModel);
-//        tree.setEditable(true);
-//        tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-//        tree.setShowsRootHandles(false);
-//        tree.setRootVisible(false);
-//        final MyRenderer loadCellRenderer = new MyRenderer();
-//        tree.setCellRenderer(loadCellRenderer);
-//        loadCellRenderer.setPlug(plug.getUserObject().toString());
-//
-//        final JTree folder = new JTree(folderModel);
-//        folder.setEditable(true);
-//        folder.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-//        folder.setShowsRootHandles(false);
-//        folder.setRootVisible(false);
-//        folder.setCellRenderer(loadCellRenderer);
-
-//
-//        final JScrollPane jspTree = new JScrollPane(tree);
-//
-//        final JScrollPane jspFolder = new JScrollPane(folder);
-//        final JFrame jfrm = new JFrame();
-//        jfrm.setSize(jspTree.getPreferredSize().width+200,jspTree.getPreferredSize().height);
-//        final Container content = jfrm.getContentPane();
-//        content.setLayout(new BoxLayout(content,BoxLayout.X_AXIS));
-//        content.add(jspTree);
-//        content.add(jspFolder);
-//        jfrm.setVisible(true);
-//        tree.setShowsRootHandles(false);
-//        jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//        JLabel jMenuLab = new JLabel();
-//        final MenuBar jmb = new MenuBar();
-//
-//        jfrm.setJMenuBar(jmb);
-
-
-
-//        JLabel jLab = new JLabel();
-//        jfrm.add(jLab, BorderLayout.SOUTH);
-//        jfrm.add(jMenuLab, BorderLayout.SOUTH);
-//
-//        final PopupMenu jpu = new PopupMenu();
-//        jpu.setCurrentFolder("");
-//        tree.addMouseListener(new ActionsMenu(jpu));
 
         programGUI.getTree().addTreeExpansionListener(new TreeExpansionListener() {
             @Override
