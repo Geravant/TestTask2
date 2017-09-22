@@ -30,59 +30,62 @@ class VisitorOfFiles {
                 treeModel.nodeStructureChanged(node);
             }
 
-        final FileTreeNode[] folderRoot = {new FileTreeNode("UltimateFolderRoot")};
-        folderRoot[0].setAllowsChildren(true);
-
-        FileTreeNode plug = new FileTreeNode("Empty Folder");
-        folderRoot[0].add(plug);
-        final DefaultTreeModel folderModel = new DefaultTreeModel(folderRoot[0]);
-
-        final JTree tree = new JTree(treeModel);
-        tree.setEditable(true);
-        tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        tree.setShowsRootHandles(false);
-        tree.setRootVisible(false);
-        final MyRenderer loadCellRenderer = new MyRenderer();
-        tree.setCellRenderer(loadCellRenderer);
-        loadCellRenderer.setPlug(plug.getUserObject().toString());
-
-        final JTree folder = new JTree(folderModel);
-        folder.setEditable(true);
-        folder.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        folder.setShowsRootHandles(false);
-        folder.setRootVisible(false);
-        folder.setCellRenderer(loadCellRenderer);
+        final GUI programGUI = new GUI(treeModel);
 
 
-        final JScrollPane jspTree = new JScrollPane(tree);
+//        final FileTreeNode[] folderRoot = {new FileTreeNode("UltimateFolderRoot")};
+//        folderRoot[0].setAllowsChildren(true);
+//
+//        FileTreeNode plug = new FileTreeNode("Empty Folder");
+//        folderRoot[0].add(plug);
+//        final DefaultTreeModel folderModel = new DefaultTreeModel(folderRoot[0]);
+//
+//        final JTree tree = new JTree(treeModel);
+//        tree.setEditable(true);
+//        tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+//        tree.setShowsRootHandles(false);
+//        tree.setRootVisible(false);
+//        final MyRenderer loadCellRenderer = new MyRenderer();
+//        tree.setCellRenderer(loadCellRenderer);
+//        loadCellRenderer.setPlug(plug.getUserObject().toString());
+//
+//        final JTree folder = new JTree(folderModel);
+//        folder.setEditable(true);
+//        folder.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+//        folder.setShowsRootHandles(false);
+//        folder.setRootVisible(false);
+//        folder.setCellRenderer(loadCellRenderer);
 
-        final JScrollPane jspFolder = new JScrollPane(folder);
-        final JFrame jfrm = new JFrame();
-        jfrm.setSize(jspTree.getPreferredSize().width+200,jspTree.getPreferredSize().height);
-        final Container content = jfrm.getContentPane();
-        content.setLayout(new BoxLayout(content,BoxLayout.X_AXIS));
-        content.add(jspTree);
-        content.add(jspFolder);
-        jfrm.setVisible(true);
-        tree.setShowsRootHandles(false);
-        jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//
+//        final JScrollPane jspTree = new JScrollPane(tree);
+//
+//        final JScrollPane jspFolder = new JScrollPane(folder);
+//        final JFrame jfrm = new JFrame();
+//        jfrm.setSize(jspTree.getPreferredSize().width+200,jspTree.getPreferredSize().height);
+//        final Container content = jfrm.getContentPane();
+//        content.setLayout(new BoxLayout(content,BoxLayout.X_AXIS));
+//        content.add(jspTree);
+//        content.add(jspFolder);
+//        jfrm.setVisible(true);
+//        tree.setShowsRootHandles(false);
+//        jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//
+//        JLabel jMenuLab = new JLabel();
+//        final MenuBar jmb = new MenuBar();
+//
+//        jfrm.setJMenuBar(jmb);
 
-        JLabel jMenuLab = new JLabel();
-        final MenuBar jmb = new MenuBar();
-
-        jfrm.setJMenuBar(jmb);
 
 
+//        JLabel jLab = new JLabel();
+//        jfrm.add(jLab, BorderLayout.SOUTH);
+//        jfrm.add(jMenuLab, BorderLayout.SOUTH);
+//
+//        final PopupMenu jpu = new PopupMenu();
+//        jpu.setCurrentFolder("");
+//        tree.addMouseListener(new ActionsMenu(jpu));
 
-        JLabel jLab = new JLabel();
-        jfrm.add(jLab, BorderLayout.SOUTH);
-        jfrm.add(jMenuLab, BorderLayout.SOUTH);
-
-        final PopupMenu jpu = new PopupMenu();
-        jpu.setCurrentFolder("");
-        tree.addMouseListener(new ActionsMenu(jpu));
-
-        tree.addTreeExpansionListener(new TreeExpansionListener() {
+        programGUI.getTree().addTreeExpansionListener(new TreeExpansionListener() {
             @Override
             public synchronized void treeExpanded(TreeExpansionEvent e) {
 
@@ -90,19 +93,19 @@ class VisitorOfFiles {
 
                 final LazyLoad lazyload = new LazyLoad(e);
 
-                loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
-                loadCellRenderer.setCurrentLoadingNode(lazyload.getNode());
-                loadCellRenderer.setCurrentLoadingNodePath(e.getPath());
+                programGUI.getLoadCellRenderer().setCurrentLoading(lazyload.getCurrentLoading().toString());
+                programGUI.getLoadCellRenderer().setCurrentLoadingNode(lazyload.getNode());
+                programGUI.getLoadCellRenderer().setCurrentLoadingNodePath(e.getPath());
                 FileTreeNode plugNode =(FileTreeNode) lazyload.getNode().getChildAt(0);
-                loadCellRenderer.setPlug(plugNode.getUserObject().toString());
-                treeModel.nodeStructureChanged(lazyload.getNode());
+                programGUI.getLoadCellRenderer().setPlug(plugNode.getUserObject().toString());
+                programGUI.getTreeModel().nodeStructureChanged(lazyload.getNode());
                 Thread lazyloadrun = new Thread(lazyload);
                 SwingUtilities.invokeLater(lazyload);
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        loadCellRenderer.setCurrentLoading(null);
-                        treeModel.nodeStructureChanged(loadCellRenderer.getCurrentLoadingNode());
+                        programGUI.getLoadCellRenderer().setCurrentLoading(null);
+                        programGUI.getTreeModel().nodeStructureChanged(programGUI.getLoadCellRenderer().getCurrentLoadingNode());
                         try {
                             Thread.sleep(2000);
 
@@ -110,44 +113,44 @@ class VisitorOfFiles {
                             e1.printStackTrace();
                         }
                         currentThread.run();
-                        treeModel.nodeStructureChanged(loadCellRenderer.getCurrentLoadingNode());
+                        programGUI.getTreeModel().nodeStructureChanged(programGUI.getLoadCellRenderer().getCurrentLoadingNode());
 
                     }
                 });
                 lazyload.getNode().setLoading(true);
 
-                loadCellRenderer.setCurrentLoading(lazyload.getCurrentLoading().toString());
+                programGUI.getLoadCellRenderer().setCurrentLoading(lazyload.getCurrentLoading().toString());
 
-                treeModel.nodeStructureChanged(lazyload.getNode());
+                programGUI.getTreeModel().nodeStructureChanged(lazyload.getNode());
 
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
                         TreeModel sub = new DefaultTreeModel(lazyload.getNode());
-                        JTree subFolder = new JTree(sub);
-                        subFolder.addMouseListener(new ActionsMenu(jpu));
-                        jpu.setCurrentFolder(lazyload.getDirname());
-                        jmb.setCurrentFolder(lazyload.getDirname());
-                        subFolder.setRootVisible(false);
-                        subFolder.setEditable(true);
-                        subFolder.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-                        subFolder.setShowsRootHandles(false);
-                        subFolder.setRootVisible(false);
-                        subFolder.setCellRenderer(loadCellRenderer);
-                        JScrollPane jspSubFolder = new JScrollPane(subFolder);
-                        content.add(jspSubFolder);
+                        programGUI.setFolder(new JTree(sub));
+                        programGUI.getFolder().addMouseListener(new ActionsMenu(programGUI.getJpu()));
+                        programGUI.getJpu().setCurrentFolder(lazyload.getDirname());
+                        programGUI.getJmb().setCurrentFolder(lazyload.getDirname());
+                        programGUI.getFolder().setRootVisible(false);
+                        programGUI.getFolder().setEditable(true);
+                        programGUI.getFolder().getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+                        programGUI.getFolder().setShowsRootHandles(false);
+                        programGUI.getFolder().setRootVisible(false);
+                        programGUI.getFolder().setCellRenderer(programGUI.getLoadCellRenderer());
+                        JScrollPane jspSubFolder = new JScrollPane(programGUI.getFolder());
+                        programGUI.getContent().add(jspSubFolder);
                         int componentToRemove;
-                        if (content.getComponentZOrder(jspFolder) > 0) {
-                            componentToRemove = content.getComponentZOrder(jspFolder);
+                        if (programGUI.getContent().getComponentZOrder(programGUI.getJspFolder()) > 0) {
+                            componentToRemove = programGUI.getContent().getComponentZOrder(programGUI.getJspFolder());
                         }
-                        else componentToRemove = content.getComponentZOrder(jspSubFolder)-1;
-                        content.remove(componentToRemove);
-                        content.validate();
+                        else componentToRemove = programGUI.getContent().getComponentZOrder(jspSubFolder)-1;
+                        programGUI.getContent().remove(componentToRemove);
+                        programGUI.getContent().validate();
                     }
                 });
 
 
-                treeModel.nodeStructureChanged(lazyload.getNode());
+                programGUI.getTreeModel().nodeStructureChanged(lazyload.getNode());
 
             }
             @Override
