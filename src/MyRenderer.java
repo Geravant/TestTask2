@@ -9,10 +9,10 @@ import java.awt.*;
 import java.util.Vector;
 
 public class MyRenderer extends DefaultTreeCellRenderer {
-    ImageIcon loadIcon = createImageIcon("load.png", "loading icon");
-    ImageIcon fileIcon = createImageIcon("file.png", "file icon");
-    ImageIcon folderIcon = createImageIcon("folder.png", "file icon");
-    ImageIcon openfolderIcon = createImageIcon("openfolder.png", "file icon");
+    private ImageIcon loadIcon = createImageIcon("load.png", "loading icon");
+    private ImageIcon fileIcon = createImageIcon("file.png", "file icon");
+    private ImageIcon folderIcon = createImageIcon("folder.png", "file icon");
+    private ImageIcon openfolderIcon = createImageIcon("openfolder.png", "file icon");
     private Vector<Object> currentLoading;
     private FileTreeNode currentLoadingNode;
     private Object plug;

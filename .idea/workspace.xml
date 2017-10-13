@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a105a0a-6f6a-4cf3-8a1b-6fdd4c13c1e9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestTask/ActionsMenu.class" afterPath="$PROJECT_DIR$/out/production/TestTask/ActionsMenu.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestTask/FileTreeNode.class" afterPath="$PROJECT_DIR$/out/production/TestTask/FileTreeNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestTask/LazyLoad.class" afterPath="$PROJECT_DIR$/out/production/TestTask/LazyLoad.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestTask/MyFileVisitor.class" afterPath="$PROJECT_DIR$/out/production/TestTask/MyFileVisitor.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/LoadingExpansionListener.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TestTask/VisitorOfFiles$1$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TestTask/VisitorOfFiles$1$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TestTask/VisitorOfFiles$1.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestTask/MyRenderer.class" afterPath="$PROJECT_DIR$/out/production/TestTask/MyRenderer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestTask/VisitorOfFiles$1$1.class" afterPath="$PROJECT_DIR$/out/production/TestTask/VisitorOfFiles$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestTask/VisitorOfFiles$1.class" afterPath="$PROJECT_DIR$/out/production/TestTask/VisitorOfFiles$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestTask/VisitorOfFiles.class" afterPath="$PROJECT_DIR$/out/production/TestTask/VisitorOfFiles.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI.java" afterPath="$PROJECT_DIR$/src/GUI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MyRenderer.java" afterPath="$PROJECT_DIR$/src/MyRenderer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/VisitorOfFiles.java" afterPath="$PROJECT_DIR$/src/VisitorOfFiles.java" />
     </list>
@@ -25,17 +21,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MyRenderer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MyRenderer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MyRenderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="18" column="49" lean-forward="true" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
+            <state relative-caret-position="238">
+              <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2820#2821#0" expanded="true" />
-                <element signature="e#2882#2883#0" expanded="true" />
-                <element signature="e#2945#2946#0" expanded="true" />
-                <element signature="e#3010#3011#0" expanded="true" />
+                <element signature="e#2852#2853#0" expanded="true" />
+                <element signature="e#2914#2915#0" expanded="true" />
+                <element signature="e#2977#2978#0" expanded="true" />
+                <element signature="e#3042#3043#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -103,14 +99,30 @@
       <file leaf-file-name="VisitorOfFiles.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/VisitorOfFiles.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1428">
-              <caret line="84" column="46" lean-forward="true" selection-start-line="84" selection-start-column="46" selection-end-line="84" selection-end-column="46" />
+            <state relative-caret-position="384">
+              <caret line="57" column="27" lean-forward="true" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2039#2888#0" expanded="true" />
-                <element signature="e#2887#2888#0" expanded="true" />
-                <element signature="e#3183#4932#0" expanded="true" />
-                <element signature="e#4931#4932#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoadingExpansionListener.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/LoadingExpansionListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="28" column="45" lean-forward="true" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#389#390#0" expanded="true" />
+                <element signature="e#433#434#0" expanded="true" />
+                <element signature="e#1272#2009#0" expanded="true" />
+                <element signature="e#2008#2009#0" expanded="true" />
+                <element signature="e#2272#3829#0" expanded="true" />
+                <element signature="e#3828#3829#0" expanded="true" />
+                <element signature="e#4227#4228#0" expanded="true" />
+                <element signature="e#4271#4272#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -169,12 +181,13 @@
         <option value="$PROJECT_DIR$/src/ActionsMenu.java" />
         <option value="$PROJECT_DIR$/src/FileTreeNode.java" />
         <option value="$PROJECT_DIR$/src/GUI.java" />
-        <option value="$PROJECT_DIR$/src/VisitorOfFiles.java" />
         <option value="$PROJECT_DIR$/src/MyRenderer.java" />
+        <option value="$PROJECT_DIR$/src/LoadingExpansionListener.java" />
+        <option value="$PROJECT_DIR$/src/VisitorOfFiles.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="107" />
     <option name="y" value="-27" />
     <option name="width" value="1612" />
@@ -550,7 +563,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -661,7 +674,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/FileBrowser.java" />
     <entry file="file://$PROJECT_DIR$/src/FileNode.java" />
     <entry file="file://$PROJECT_DIR$/src/MyFileVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -677,10 +689,6 @@
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2039#2888#0" expanded="true" />
-            <element signature="e#2887#2888#0" expanded="true" />
-            <element signature="e#3183#4932#0" expanded="true" />
-            <element signature="e#4931#4932#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -701,10 +709,6 @@
           <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2039#2888#0" expanded="true" />
-            <element signature="e#2887#2888#0" expanded="true" />
-            <element signature="e#3183#4932#0" expanded="true" />
-            <element signature="e#4931#4932#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -724,10 +728,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2039#2888#0" expanded="true" />
-            <element signature="e#2887#2888#0" expanded="true" />
-            <element signature="e#3183#4932#0" expanded="true" />
-            <element signature="e#4931#4932#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -738,10 +738,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2039#2888#0" expanded="true" />
-            <element signature="e#2887#2888#0" expanded="true" />
-            <element signature="e#3183#4932#0" expanded="true" />
-            <element signature="e#4931#4932#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -979,35 +975,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/VisitorOfFiles.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="84" column="46" lean-forward="true" selection-start-line="84" selection-start-column="46" selection-end-line="84" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2039#2888#0" expanded="true" />
-            <element signature="e#2887#2888#0" expanded="true" />
-            <element signature="e#3183#4932#0" expanded="true" />
-            <element signature="e#4931#4932#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/javax/swing/tree/TreeSelectionModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-109">
           <caret line="91" column="42" lean-forward="false" selection-start-line="91" selection-start-column="42" selection-end-line="91" selection-end-column="42" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="93" column="76" lean-forward="true" selection-start-line="93" selection-start-column="76" selection-end-line="93" selection-end-column="76" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1029,14 +1001,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MyRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="18" column="49" lean-forward="true" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
+        <state relative-caret-position="238">
+          <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2820#2821#0" expanded="true" />
-            <element signature="e#2882#2883#0" expanded="true" />
-            <element signature="e#2945#2946#0" expanded="true" />
-            <element signature="e#3010#3011#0" expanded="true" />
+            <element signature="e#2852#2853#0" expanded="true" />
+            <element signature="e#2914#2915#0" expanded="true" />
+            <element signature="e#2977#2978#0" expanded="true" />
+            <element signature="e#3042#3043#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="93" column="76" lean-forward="true" selection-start-line="93" selection-start-column="76" selection-end-line="93" selection-end-column="76" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VisitorOfFiles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="57" column="27" lean-forward="true" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LoadingExpansionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="45" lean-forward="true" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#389#390#0" expanded="true" />
+            <element signature="e#433#434#0" expanded="true" />
+            <element signature="e#1272#2009#0" expanded="true" />
+            <element signature="e#2008#2009#0" expanded="true" />
+            <element signature="e#2272#3829#0" expanded="true" />
+            <element signature="e#3828#3829#0" expanded="true" />
+            <element signature="e#4227#4228#0" expanded="true" />
+            <element signature="e#4271#4272#0" expanded="true" />
           </folding>
         </state>
       </provider>
