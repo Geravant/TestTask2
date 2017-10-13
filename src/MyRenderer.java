@@ -2,23 +2,30 @@ import sun.swing.ImageIconUIResource;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import java.awt.*;
+import java.util.Vector;
 
 public class MyRenderer extends DefaultTreeCellRenderer {
     ImageIcon loadIcon = createImageIcon("load.png", "loading icon");
     ImageIcon fileIcon = createImageIcon("file.png", "file icon");
     ImageIcon folderIcon = createImageIcon("folder.png", "file icon");
     ImageIcon openfolderIcon = createImageIcon("openfolder.png", "file icon");
-    private Object currentLoading;
+    private Vector<Object> currentLoading;
     private FileTreeNode currentLoadingNode;
     private Object plug;
-    private TreePath currentLoadingNodePath;
+    private Vector<TreePath> currentLoadingNodePath;
     private JLabel lblNull = new JLabel();
 
     public MyRenderer() {
         super();
-        currentLoading = new Object();
+        setOpenIcon(openfolderIcon);
+        setIcon(fileIcon);
+        setClosedIcon(folderIcon);
+        currentLoading = new Vector<Object>();
+        currentLoadingNodePath = new Vector<TreePath>();
     }
 
     public Component getTreeCellRendererComponent(JTree tree,
@@ -27,10 +34,11 @@ public class MyRenderer extends DefaultTreeCellRenderer {
         super.getTreeCellRendererComponent(tree, value, sel,
                 expanded, leaf, row, hasFocus);
 
+        TreeModel loadModel = tree.getModel();
 
         Component thingToPaint = this;
 
-        if (value.toString() == currentLoading) {
+        if (currentLoading.contains(value.toString())) {
             setIcon(loadIcon);
             thingToPaint = this;
         }
@@ -76,7 +84,11 @@ public class MyRenderer extends DefaultTreeCellRenderer {
 
 
     public void setCurrentLoading(Object currentLoading) {
-        this.currentLoading = currentLoading;
+        this.currentLoading.addElement(currentLoading);
+    }
+
+    public void removeCurrentLoading(Object currentLoading) {
+        this.currentLoading.removeElement(currentLoading);
     }
 
     public Object getCurrentLoading() {
@@ -91,12 +103,12 @@ public class MyRenderer extends DefaultTreeCellRenderer {
         this.currentLoadingNode = currentLoadingNode;
     }
 
-    public TreePath getCurrentLoadingNodePath() {
+    public Vector<TreePath> getCurrentLoadingNodePath() {
         return currentLoadingNodePath;
     }
 
     public void setCurrentLoadingNodePath(TreePath currentLoadingNodePath) {
-        this.currentLoadingNodePath = currentLoadingNodePath;
+        this.currentLoadingNodePath.addElement(currentLoadingNodePath);
     }
 
     public void setPlug(Object plug) {

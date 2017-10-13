@@ -47,6 +47,7 @@ class VisitorOfFiles {
                     @Override
                     public void run() {
                         programGUI.getLoadCellRenderer().setCurrentLoading(null);
+                        programGUI.getLoadCellRenderer().removeCurrentLoading(lazyload.getCurrentLoading().toString());
                         programGUI.getTreeModel().nodeStructureChanged(programGUI.getLoadCellRenderer().getCurrentLoadingNode());
                         try {
                             Thread.sleep(2000);
@@ -91,7 +92,7 @@ class VisitorOfFiles {
                     }
                 });
 
-
+                programGUI.getLoadCellRenderer().removeCurrentLoading(lazyload.getCurrentLoading().toString());
                 programGUI.getTreeModel().nodeStructureChanged(lazyload.getNode());
 
             }

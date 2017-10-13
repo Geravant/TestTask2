@@ -104,7 +104,7 @@ public class GUI {
         folder.setCellRenderer(loadCellRenderer);
 
 
-        jfrm.setSize(jspTree.getPreferredSize().width+200,jspTree.getPreferredSize().height);
+        jfrm.setSize(jspTree.getPreferredSize().width+400,jspTree.getPreferredSize().height);
         content.setLayout(new BoxLayout(content,BoxLayout.X_AXIS));
         content.add(jspTree);
         content.add(jspFolder);
