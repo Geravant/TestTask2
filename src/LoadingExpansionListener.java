@@ -1,9 +1,7 @@
 import javax.swing.*;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreeSelectionModel;
+import javax.swing.tree.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -41,10 +39,12 @@ public class LoadingExpansionListener implements TreeExpansionListener{
                 programGUI.getTreeModel().nodeStructureChanged(lazyload.getNode());
                 LazyLoad localLazyLoad = lazyload;
                 Thread lazyloadrun = new Thread(localLazyLoad);
-                System.out.println("Lazyload started for" + localLazyLoad.getCurrentLoading().toString());
                 lazyloadrun.run();
                 programGUI.getTreeModel().nodeStructureChanged(programGUI.getLoadCellRenderer().getCurrentLoadingNode());
                 TreeModel sub = new DefaultTreeModel(lazyload.getNode());
+                final TreePath path = event.getPath();
+                programGUI.setSubNode(lazyload.getNode());
+                programGUI.setSub(sub);
                 programGUI.setFolder(new JTree(sub));
                 programGUI.getFolder().addMouseListener(new ActionsMenu(programGUI.getJpu()));
                 programGUI.getJpu().setCurrentFolder(lazyload.getDirname());
@@ -67,6 +67,17 @@ public class LoadingExpansionListener implements TreeExpansionListener{
                 programGUI.getLoadCellRenderer().setCurrentLoading(null);
                 programGUI.getLoadCellRenderer().removeCurrentLoading(lazyload.getCurrentLoading().toString());
                 programGUI.getTreeModel().nodeStructureChanged(programGUI.getLoadCellRenderer().getCurrentLoadingNode());
+                programGUI.getFolder().addTreeExpansionListener(new TreeExpansionListener() {
+                    @Override
+                    public void treeExpanded(TreeExpansionEvent e) {
+                        programGUI.getTree().expandPath(path.pathByAddingChild(e.getPath().getLastPathComponent()));
+                    }
+
+                    @Override
+                    public void treeCollapsed(TreeExpansionEvent e) {
+
+                    }
+                });
 //                try {
 //                    Thread.sleep(2000);
 //
@@ -144,6 +155,13 @@ public class LoadingExpansionListener implements TreeExpansionListener{
         FileTreeNode plug = new FileTreeNode("Empty folder");
 
         lazyload.getNode().add(plug);
+//        if (programGUI.getSub().getRoot() == e.getPath().getLastPathComponent()){
+//            System.out.println("indeed");
+//            TreePath path = programGUI.getFolder().getPathForRow(0).getParentPath();
+//            System.out.println(path.toString());
+//            programGUI.getFolder().collapsePath(path);
+//        }
+
 
     }
 

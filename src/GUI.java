@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeSelectionModel;
 import java.awt.*;
 
@@ -19,6 +20,7 @@ public class GUI {
     private JTree tree;
     private JTree folder;
     private MyRenderer loadCellRenderer;
+//    private RenamingTreeCellEditor renamingTreeCellEditor;
     private JScrollPane jspTree;
     private JScrollPane jspFolder;
     private JFrame jfrm;
@@ -28,7 +30,8 @@ public class GUI {
     private MenuBar jmb;
     private PopupMenu jpu;
     private DefaultTreeModel treeModel;
-    private DefaultTreeModel sub;
+    private TreeModel sub;
+    private FileTreeNode subNode;
     private FileTreeNode plug;
 
     public JTree getTree() {
@@ -81,6 +84,7 @@ public class GUI {
         folder = new JTree(folderModel);
 
         loadCellRenderer = new MyRenderer();
+//        renamingTreeCellEditor = new RenamingTreeCellEditor();
         jspTree = new JScrollPane(tree);
         jspFolder = new JScrollPane(folder);
         jfrm = new JFrame();
@@ -90,14 +94,15 @@ public class GUI {
         jmb = new MenuBar();
         jpu = new PopupMenu();
 
-        tree.setEditable(true);
+        tree.setEditable(false);
+//        tree.setCellEditor(renamingTreeCellEditor);
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setShowsRootHandles(false);
         tree.setRootVisible(false);
         tree.setCellRenderer(loadCellRenderer);
         loadCellRenderer.setPlug(plug.getUserObject().toString());
 
-        folder.setEditable(true);
+        folder.setEditable(false);
         folder.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         folder.setShowsRootHandles(false);
         folder.setRootVisible(false);
@@ -121,9 +126,27 @@ public class GUI {
         jfrm.add(jMenuLab, BorderLayout.SOUTH);
 
         jpu.setCurrentFolder("");
-        tree.addMouseListener(new ActionsMenu(jpu));
+        ActionsMenu actionsMenu = new ActionsMenu(jpu);
+        actionsMenu.setTree(tree);
+        tree.addMouseListener(actionsMenu);
+
 
     }
 
 
+    public TreeModel getSub() {
+        return sub;
+    }
+
+    public void setSub(TreeModel sub) {
+        this.sub = sub;
+    }
+
+    public FileTreeNode getSubNode() {
+        return subNode;
+    }
+
+    public void setSubNode(FileTreeNode subNode) {
+        this.subNode = subNode;
+    }
 }
