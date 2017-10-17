@@ -1,8 +1,12 @@
 import javax.swing.*;
+import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeSelectionModel;
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.VetoableChangeListener;
 
 public class GUI {
 
@@ -13,6 +17,11 @@ public class GUI {
         this.folder.setShowsRootHandles(false);
         this.folder.setRootVisible(false);
         this.folder.setCellRenderer(loadCellRenderer);
+        jpu.setCurrentFolder("");
+        this.actionsMenuFolder = new ActionsMenu(this.jpu);
+        this.folder.addMouseListener(actionsMenuFolder);
+        actionsMenuFolder.setTree(folder);
+
     }
 
 
@@ -20,7 +29,6 @@ public class GUI {
     private JTree tree;
     private JTree folder;
     private MyRenderer loadCellRenderer;
-//    private RenamingTreeCellEditor renamingTreeCellEditor;
     private JScrollPane jspTree;
     private JScrollPane jspFolder;
     private JFrame jfrm;
@@ -33,6 +41,8 @@ public class GUI {
     private TreeModel sub;
     private FileTreeNode subNode;
     private FileTreeNode plug;
+    private ActionsMenu actionsMenu;
+    private ActionsMenu actionsMenuFolder;
 
     public JTree getTree() {
         return tree;
@@ -84,7 +94,6 @@ public class GUI {
         folder = new JTree(folderModel);
 
         loadCellRenderer = new MyRenderer();
-//        renamingTreeCellEditor = new RenamingTreeCellEditor();
         jspTree = new JScrollPane(tree);
         jspFolder = new JScrollPane(folder);
         jfrm = new JFrame();
@@ -94,8 +103,10 @@ public class GUI {
         jmb = new MenuBar();
         jpu = new PopupMenu();
 
-        tree.setEditable(false);
-//        tree.setCellEditor(renamingTreeCellEditor);
+//        JTextField renamingEditorTextField = new JTextField();
+//        RenamingTreeCellEditor renamingTreeCellEditor = new RenamingTreeCellEditor();
+//        DefaultTreeCellEditor treeCellEditor = new DefaultTreeCellEditor(tree, loadCellRenderer, renamingTreeCellEditor);
+        tree.setEditable(true);
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setShowsRootHandles(false);
         tree.setRootVisible(false);
@@ -126,7 +137,7 @@ public class GUI {
         jfrm.add(jMenuLab, BorderLayout.SOUTH);
 
         jpu.setCurrentFolder("");
-        ActionsMenu actionsMenu = new ActionsMenu(jpu);
+        actionsMenu = new ActionsMenu(jpu);
         actionsMenu.setTree(tree);
         tree.addMouseListener(actionsMenu);
 
@@ -148,5 +159,9 @@ public class GUI {
 
     public void setSubNode(FileTreeNode subNode) {
         this.subNode = subNode;
+    }
+
+    public void setActionsMenu(ActionsMenu actionsMenu) {
+        this.actionsMenu = actionsMenu;
     }
 }

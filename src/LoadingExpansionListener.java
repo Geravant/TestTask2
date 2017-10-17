@@ -49,6 +49,7 @@ public class LoadingExpansionListener implements TreeExpansionListener{
                 programGUI.getFolder().addMouseListener(new ActionsMenu(programGUI.getJpu()));
                 programGUI.getJpu().setCurrentFolder(lazyload.getDirname());
                 programGUI.getJmb().setCurrentFolder(lazyload.getDirname());
+                programGUI.getJpu().setCurrentFolder(lazyload.getDirname());
                 programGUI.getFolder().setRootVisible(false);
                 programGUI.getFolder().setEditable(true);
                 programGUI.getFolder().getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);

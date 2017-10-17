@@ -32,4 +32,6 @@ public class PopupMenu extends JPopupMenu implements ActionListener{
     public void setCurrentFolder(String currentFolder) {
         this.currentFolder = currentFolder;
     }
+
+    public String getCurrentFolder() {return this.currentFolder;}
 }

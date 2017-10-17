@@ -1,10 +1,5 @@
-
 import javax.swing.*;
-import javax.swing.event.TreeModelEvent;
-import javax.swing.event.TreeModelListener;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.TreePath;
+import javax.swing.tree.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -23,7 +18,23 @@ public class ActionsMenu extends MouseAdapter {
             jpu.show(e.getComponent(), e.getX(), e.getY());
         }
 
+        if (e.getClickCount() > 2 ) {
+            try {
+                TreeModel model = tree.getModel();
+                TreeCellEditor editor = tree.getCellEditor();
+                Object oldValue = editor.getCellEditorValue();
+                RenamingTreeModelListener renamingTreeModelListener = new RenamingTreeModelListener();
+                renamingTreeModelListener.setOldValue(oldValue.toString());
+                model.addTreeModelListener(renamingTreeModelListener);
+                renamingTreeModelListener.setCurrentFolder(jpu.getCurrentFolder());
+                renamingTreeModelListener.setModel(model);
+            }
+            catch (NullPointerException notInTree) {
 
+            }
+
+
+        }
     }
 
     @Override
@@ -37,4 +48,6 @@ public class ActionsMenu extends MouseAdapter {
     public void setTree(JTree tree) {
         this.tree = tree;
     }
+
+
 }
