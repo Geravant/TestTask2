@@ -1,8 +1,5 @@
 import javax.swing.*;
-import javax.swing.tree.DefaultTreeCellEditor;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreeSelectionModel;
+import javax.swing.tree.*;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -38,11 +35,16 @@ public class GUI {
     private MenuBar jmb;
     private PopupMenu jpu;
     private DefaultTreeModel treeModel;
-    private TreeModel sub;
+    private DefaultTreeModel sub;
     private FileTreeNode subNode;
     private FileTreeNode plug;
     private ActionsMenu actionsMenu;
     private ActionsMenu actionsMenuFolder;
+    private DefaultTreeCellEditor defaultTreeCellEditor;
+    private FileTreeCellEditor fileTreeCellEditor;
+    private TreePath currentFolder;
+    private RenamingTreeSelectionListener renamingTreeSelectionListener;
+    private RenamingTreeModelListener renamingTreeModelListener;
 
     public JTree getTree() {
         return tree;
@@ -112,12 +114,22 @@ public class GUI {
         tree.setRootVisible(false);
         tree.setCellRenderer(loadCellRenderer);
         loadCellRenderer.setPlug(plug.getUserObject().toString());
+        fileTreeCellEditor = new FileTreeCellEditor(tree, loadCellRenderer);
+        defaultTreeCellEditor = new DefaultTreeCellEditor(tree, loadCellRenderer, fileTreeCellEditor);
+//        tree.setCellEditor(defaultTreeCellEditor);
+        System.out.println(tree.getCellEditor().toString());
+        renamingTreeModelListener = new RenamingTreeModelListener();
+        treeModel.addTreeModelListener(renamingTreeModelListener);
+        RenamingTreeSelectionListener renamingTreeSelectionListener = new RenamingTreeSelectionListener(this);
+        tree.addTreeSelectionListener(renamingTreeSelectionListener);
+
 
         folder.setEditable(false);
         folder.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         folder.setShowsRootHandles(false);
         folder.setRootVisible(false);
         folder.setCellRenderer(loadCellRenderer);
+        folder.addTreeSelectionListener(renamingTreeSelectionListener);
 
 
         jfrm.setSize(jspTree.getPreferredSize().width+400,jspTree.getPreferredSize().height);
@@ -149,7 +161,7 @@ public class GUI {
         return sub;
     }
 
-    public void setSub(TreeModel sub) {
+    public void setSub(DefaultTreeModel sub) {
         this.sub = sub;
     }
 
@@ -163,5 +175,22 @@ public class GUI {
 
     public void setActionsMenu(ActionsMenu actionsMenu) {
         this.actionsMenu = actionsMenu;
+    }
+
+    public void setCurrentFolder(TreePath currentFolder) {
+        this.currentFolder = currentFolder;
+    }
+
+
+    public RenamingTreeModelListener getRenamingTreeModelListener() {
+        return renamingTreeModelListener;
+    }
+
+    public RenamingTreeSelectionListener getRenamingTreeSelectionListener() {
+        return renamingTreeSelectionListener;
+    }
+
+    public void setRenamingTreeSelectionListener(RenamingTreeSelectionListener renamingTreeSelectionListener) {
+        this.renamingTreeSelectionListener = renamingTreeSelectionListener;
     }
 }

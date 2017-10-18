@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.event.TreeModelListener;
 import javax.swing.tree.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -18,23 +19,29 @@ public class ActionsMenu extends MouseAdapter {
             jpu.show(e.getComponent(), e.getX(), e.getY());
         }
 
-        if (e.getClickCount() > 2 ) {
-            try {
-                TreeModel model = tree.getModel();
-                TreeCellEditor editor = tree.getCellEditor();
-                Object oldValue = editor.getCellEditorValue();
-                RenamingTreeModelListener renamingTreeModelListener = new RenamingTreeModelListener();
-                renamingTreeModelListener.setOldValue(oldValue.toString());
-                model.addTreeModelListener(renamingTreeModelListener);
-                renamingTreeModelListener.setCurrentFolder(jpu.getCurrentFolder());
-                renamingTreeModelListener.setModel(model);
-            }
-            catch (NullPointerException notInTree) {
-
-            }
-
-
-        }
+//        if (e.getClickCount() > 2 ) {
+//            try {
+//                DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+//                TreeCellEditor editor = tree.getCellEditor();
+//                Object oldValue = editor.getCellEditorValue();
+//                RenamingTreeModelListener renamingTreeModelListener = new RenamingTreeModelListener();
+//                renamingTreeModelListener.setOldValue(oldValue.toString());
+////                for (TreeModelListener i : model.getTreeModelListeners()) {
+////                    model.removeTreeModelListener(i);
+////                }
+//                if (model.getTreeModelListeners().length > 1){
+//                    model.removeTreeModelListener(model.getTreeModelListeners()[model.getTreeModelListeners().length-1]);
+//                }
+//                model.addTreeModelListener(renamingTreeModelListener);
+//                renamingTreeModelListener.setCurrentFolder(jpu.getCurrentFolder());
+//                renamingTreeModelListener.setModel(model);
+//            }
+//            catch (NullPointerException notInTree) {
+//
+//            }
+//
+//
+//        }
     }
 
     @Override

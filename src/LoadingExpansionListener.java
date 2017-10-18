@@ -41,7 +41,7 @@ public class LoadingExpansionListener implements TreeExpansionListener{
                 Thread lazyloadrun = new Thread(localLazyLoad);
                 lazyloadrun.run();
                 programGUI.getTreeModel().nodeStructureChanged(programGUI.getLoadCellRenderer().getCurrentLoadingNode());
-                TreeModel sub = new DefaultTreeModel(lazyload.getNode());
+                DefaultTreeModel sub = new DefaultTreeModel(lazyload.getNode());
                 final TreePath path = event.getPath();
                 programGUI.setSubNode(lazyload.getNode());
                 programGUI.setSub(sub);
@@ -56,6 +56,8 @@ public class LoadingExpansionListener implements TreeExpansionListener{
                 programGUI.getFolder().setShowsRootHandles(false);
                 programGUI.getFolder().setRootVisible(false);
                 programGUI.getFolder().setCellRenderer(programGUI.getLoadCellRenderer());
+                programGUI.getFolder().addTreeSelectionListener(programGUI.getRenamingTreeSelectionListener());
+                programGUI.getSub().addTreeModelListener(programGUI.getRenamingTreeModelListener());
                 JScrollPane jspSubFolder = new JScrollPane(programGUI.getFolder());
                 programGUI.getContent().add(jspSubFolder);
                 int componentToRemove;
