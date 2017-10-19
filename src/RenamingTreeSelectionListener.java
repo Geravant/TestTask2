@@ -15,7 +15,6 @@ public class RenamingTreeSelectionListener implements TreeSelectionListener {
     @Override
     public void valueChanged(TreeSelectionEvent e) {
         this.currentFolder = e.getPath();
-        System.out.println(e.getPath().toString() + " old value");
         programGUI.setCurrentFolder(currentFolder);
         try {
             RenamingTreeModelListener renamingTreeModelListener = programGUI.getRenamingTreeModelListener();

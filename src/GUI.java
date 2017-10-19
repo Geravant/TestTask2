@@ -1,9 +1,6 @@
 import javax.swing.*;
 import javax.swing.tree.*;
 import java.awt.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.beans.VetoableChangeListener;
 
 public class GUI {
 
@@ -45,6 +42,7 @@ public class GUI {
     private TreePath currentFolder;
     private RenamingTreeSelectionListener renamingTreeSelectionListener;
     private RenamingTreeModelListener renamingTreeModelListener;
+    private FileTreeNode UltimateRoot;
 
     public JTree getTree() {
         return tree;
@@ -92,6 +90,9 @@ public class GUI {
         FileTreeNode plug = new FileTreeNode("Empty Folder");
         folderRoot[0].add(plug);
         DefaultTreeModel folderModel = new DefaultTreeModel(folderRoot[0]);
+        UltimateRoot = folderRoot[0];
+
+
 
         folder = new JTree(folderModel);
 
@@ -104,10 +105,6 @@ public class GUI {
         jLab = new JLabel();
         jmb = new MenuBar();
         jpu = new PopupMenu();
-
-//        JTextField renamingEditorTextField = new JTextField();
-//        RenamingTreeCellEditor renamingTreeCellEditor = new RenamingTreeCellEditor();
-//        DefaultTreeCellEditor treeCellEditor = new DefaultTreeCellEditor(tree, loadCellRenderer, renamingTreeCellEditor);
         tree.setEditable(true);
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setShowsRootHandles(false);
@@ -116,7 +113,6 @@ public class GUI {
         loadCellRenderer.setPlug(plug.getUserObject().toString());
         fileTreeCellEditor = new FileTreeCellEditor(tree, loadCellRenderer);
         defaultTreeCellEditor = new DefaultTreeCellEditor(tree, loadCellRenderer, fileTreeCellEditor);
-//        tree.setCellEditor(defaultTreeCellEditor);
         System.out.println(tree.getCellEditor().toString());
         renamingTreeModelListener = new RenamingTreeModelListener();
         treeModel.addTreeModelListener(renamingTreeModelListener);
@@ -192,5 +188,13 @@ public class GUI {
 
     public void setRenamingTreeSelectionListener(RenamingTreeSelectionListener renamingTreeSelectionListener) {
         this.renamingTreeSelectionListener = renamingTreeSelectionListener;
+    }
+
+    public FileTreeNode getUltimateRoot() {
+        return UltimateRoot;
+    }
+
+    public void setUltimateRoot(FileTreeNode ultimateRoot) {
+        UltimateRoot = ultimateRoot;
     }
 }

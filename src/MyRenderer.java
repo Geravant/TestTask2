@@ -6,6 +6,8 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import java.awt.*;
+import java.util.NoSuchElementException;
+import java.util.Queue;
 import java.util.Vector;
 
 public class MyRenderer extends DefaultTreeCellRenderer {
@@ -18,6 +20,7 @@ public class MyRenderer extends DefaultTreeCellRenderer {
     private Object plug;
     private Vector<TreePath> currentLoadingNodePath;
     private JLabel lblNull = new JLabel();
+    private Vector currentLoadingRow;
 
     public MyRenderer() {
         super();
@@ -26,6 +29,7 @@ public class MyRenderer extends DefaultTreeCellRenderer {
         setClosedIcon(folderIcon);
         currentLoading = new Vector<Object>();
         currentLoadingNodePath = new Vector<TreePath>();
+        currentLoadingRow = new Vector();
     }
 
     public Component getTreeCellRendererComponent(JTree tree,
@@ -34,25 +38,22 @@ public class MyRenderer extends DefaultTreeCellRenderer {
         super.getTreeCellRendererComponent(tree, value, sel,
                 expanded, leaf, row, hasFocus);
 
-        TreeModel loadModel = tree.getModel();
 
         Component thingToPaint = this;
 
-        if (currentLoading.contains(value.toString())) {
-            setIcon(loadIcon);
-            thingToPaint = this;
-        }
+            if (currentLoading.contains(value.toString()) & currentLoadingNodePath.contains(tree.getPathForRow(row))) {
+                setIcon(loadIcon);
+                thingToPaint = this;
+            } else if (!expanded) {
+                setIcon(folderIcon);
+                thingToPaint = this;
+            } else if (expanded) {
+                setIcon(openfolderIcon);
+                thingToPaint = this;
+            }
 
 
-        else if (!expanded){
-            setIcon(folderIcon);
-            thingToPaint = this;
-        }
 
-        else if (expanded){
-            setIcon(openfolderIcon);
-            thingToPaint = this;
-        }
 
         if (leaf) {
             setIcon(fileIcon);
@@ -113,5 +114,17 @@ public class MyRenderer extends DefaultTreeCellRenderer {
 
     public void setPlug(Object plug) {
         this.plug = plug;
+    }
+
+    public void setCurrentLoadingRow(int currentLoadingRow) {
+        this.currentLoadingRow.add(currentLoadingRow);
+    }
+
+    public void removeCurrentLoadingRow(int currentLoadingRow){
+        this.currentLoadingRow.remove(currentLoadingRow);
+    }
+
+    public Vector getCurrentLoadingRow() {
+        return  currentLoadingRow;
     }
 }

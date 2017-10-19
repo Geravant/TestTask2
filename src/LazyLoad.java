@@ -13,20 +13,30 @@ public class LazyLoad implements Runnable{
     private String dirname;
     private MyFileVisitor myFileVisitor;
     private FileTreeNode node;
+    private FileTreeNode subNode;
     private Object currentLoading;
 
 
 
     LazyLoad(TreeExpansionEvent e){
         dirDepth = e.getPath().getPathCount();
-        dirname = e.getPath().getPathComponent(1).toString();
-        for(int i=2; i< dirDepth; i++) {
-            dirname = dirname + File.separator+ e.getPath().getPathComponent(i);
+        if (dirDepth > 1) {
+            dirname = e.getPath().getPathComponent(1).toString();
+            for (int i = 2; i < dirDepth; i++) {
+                dirname = dirname + File.separator + e.getPath().getPathComponent(i);
+            }
+        }
+        else {
+
+
+            dirname = e.getPath().getPathComponent(0).toString();
         }
 
-        myFileVisitor = new MyFileVisitor(dirname);
-        node = (FileTreeNode) e.getPath().getLastPathComponent();
-        currentLoading = node.getUserObject().toString();
+            myFileVisitor = new MyFileVisitor(dirname);
+            node = (FileTreeNode) e.getPath().getLastPathComponent();
+            currentLoading = node.getUserObject().toString();
+
+
     }
 
 
@@ -66,11 +76,10 @@ public class LazyLoad implements Runnable{
 
         } catch (IOException exc) {
             System.out.println("IO Error");
-            node.remove(0);
 
         }
 
-        currentLoading = node.getUserObject().toString();
+//        currentLoading = node.getUserObject().toString();
 
     }
 
@@ -90,5 +99,13 @@ public class LazyLoad implements Runnable{
 
     public String getDirname() {
         return dirname;
+    }
+
+    public FileTreeNode getSubNode() {
+        return subNode;
+    }
+
+    public void setSubNode(FileTreeNode subNode) {
+        this.subNode = subNode;
     }
 }
